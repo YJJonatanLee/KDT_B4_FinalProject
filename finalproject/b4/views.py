@@ -2,5 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def test(request):
-    return HttpResponse("Test")
+    return render(request,'camera_test.html')
 # Create your views here.
+
