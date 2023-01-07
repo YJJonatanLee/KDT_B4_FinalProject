@@ -17,8 +17,15 @@ from django.contrib import admin
 from django.urls import path
 
 from b4 import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('b4/',views.test),
+    path('share/<int:id>',views.share_page),
 ]
+
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
