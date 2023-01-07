@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('b4/',views.test),
     path('share/<int:id>',views.share_page),
+    path('upload_photo',views.upload_photo),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

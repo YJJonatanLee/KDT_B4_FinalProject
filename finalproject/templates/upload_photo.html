@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    색상 : 
+    <input name="color" type="text" value="">
+    <br><br>
+   
+    업로드 : 
+    <input name="origin" type="file">
+
+    <br><br>
+  
+    업로드 : 
+    <input name="converte" type="file">
+
+    <br><br>
+    업로드 : 
+    <input name="background" type="file">
+    <br><br>
+
+  <input class="btn btn-primary" type="submit" value="글 작성">
+  </form>
+  </div>
+{% endblock %}
