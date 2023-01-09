@@ -31,3 +31,7 @@ def upload_photo(request):
     else:
         return render(request, 'upload_photo.html')
 
+def update_photo(request, id):
+    photo = Photos.objects.filter(id = id)
+    photo.update(background_color='가')
+    return render(request,'share_page.html',{'photo':photo})
