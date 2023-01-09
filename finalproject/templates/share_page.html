@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'b4/css/share.css' %}?after">
     <title>Document</title>
 </head>
 <body>
-    {% for p in photo.all %}
+    <div class="main">
+        <div class="title">축 졸업</div>
+        <!-- <div class="information"></div> -->
+        <!-- <h1>asdf</h1> -->
+      {% for p in photo.all %}
         <img src={{ p.converte_photo.url }}>
-    {% endfor %}
+      {% endfor %}  
+      <div class="share_btn1">
+        <div class="share i1"></div>
+        <div class="share i2"></div>
+        <div class="share i3"></div>
+      </div>
+      <div class="share_btn2">
+        <div class="share i4"></div>
+        <div class="share i5"></div>
+      </div>
+      <div class="restart">졸업사진 찍으러 가기</div>
+    </div>
+    
 </body>
 </html>
