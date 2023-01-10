@@ -13,11 +13,28 @@
     <div class="main">
         <div class="title">네모네모 고등학교 졸업식</div>
         <div class="inf_box">
-            <div class="information"></div>
+          <div class="information">
+          <span>‘네모네모 고등학교 졸업식’은 사진을 넣으면 교복을 입은 도트 캐릭터로 바꿔준답니다!<br>
+
+하지만 다음과 같은 경우에는 결과가 많이 다를 수 있어요! 가능하면 얼굴과 머리가 잘 보이는 정면 사진을 넣어주세요!<br><br>
+
+1. 얼굴이 너무 작거나 흔들려서 알아볼 수 없을 때<br>
+2. 빛/그림자 때문에 색이 다르게 보일 때<br>
+3. 사람의 사진이 아닐 때<br><br>
+
+그리고 입력한 사진은 이 서비스 이외에는 저장되거나 사용되지 않습니다!<br>
+
+그럼 졸업사진을 찍으러 가볼까요~?</span>
+            <!-- <div class="inf_btn"></div> -->
+        </div>
         </div>
         
+        
+          
+          
+        
         <!-- <h1>asdf</h1> -->
-        <div class="input_img"></div>
+        <div class="input_img" onclick="popup_open()"></div>
       <!-- {% for p in photo.all %}
         <img src={{ p.converte_photo.url }}>
       {% endfor %}   -->
@@ -26,10 +43,17 @@
         <div class="share i2"></div>
         <div class="share i3"></div>
       </div> -->
-      <div class="btn_box">
-        <div class="btn camera" onclick="setChildValue('b4')"></div>
-        <div class="btn gallery" onclick="setChildValue('gallery')"></div>
+      <div class="pop_up_bg" id="pop_up_bg" onclick="popup_close()">
+        <div class="pop_up">
+          <div class="pop_up_name">사진 선택</div>
+          <div class="btn_box">
+            <div class="btn camera" onclick="setChildValue('b4')">카메라</div>
+            <div class="btn gallery" onclick="setChildValue('gallery')">갤러리</div>
+          </div>
+        </div>
       </div>
+      
+      
       <div class="start">사진 촬영 하기</div>
     </div>
     
