@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>이미지 매개변수로 보내는 테스트</title>
+  </head>
+  <body>
+    <h1>현재 웹캠</h1>
+    <div>
+      <video id="video" width="800" height="600" autoplay></video>
+      <br>
+      <button id="capture" onclick="takePicture()">캡쳐</button>
+    </div>
+    <br>
+    <h2>img라는 변수에 저장되어있는 image</h2>
+    
+    <img id="img" width="200" height="150" alt="">
+
+    <script>
+      const video = document.getElementById("video");
+      const canvas = document.createElement("canvas");
+      const img = document.getElementById("img");
+      const capture = document.getElementById("capture");
+      const constraints = {
+        video: {
+          width: video.width,
+          height: video.height
+        }
+      };
+
+      //미디어 디바이스 접근 요청
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(stream => {
+          video.srcObject = stream;
+        })
+        .catch(err => console.log(err));
+        
+
+      const takePicture = () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0);
+        const data = canvas.toDataURL("image/png");
+        img.src = data;
+      };
+    </script>
+  </body>
+</html>
