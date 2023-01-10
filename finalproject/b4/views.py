@@ -15,6 +15,9 @@ def share_page(request, id):
     photo = Photos.objects.filter(id = id)
     return render(request,'share_page.html',{'photo':photo})
 
+def start_page(request):
+    return render(request,'start_page.html')
+
 def upload_photo(request):
     if request.method == 'POST':
         photo=Photos()

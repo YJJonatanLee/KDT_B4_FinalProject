@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'b4/js/start.js' %}?after"></script>
+    <link rel="stylesheet" href="{% static 'b4/css/start.css' %}?after">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="title">네모네모 고등학교 졸업식</div>
+        <div class="inf_box">
+            <div class="information"></div>
+        </div>
+        
+        <!-- <h1>asdf</h1> -->
+        <div class="input_img"></div>
+      <!-- {% for p in photo.all %}
+        <img src={{ p.converte_photo.url }}>
+      {% endfor %}   -->
+      <!-- <div class="share_btn1">
+        <div class="share i1"></div>
+        <div class="share i2"></div>
+        <div class="share i3"></div>
+      </div> -->
+      <div class="btn_box">
+        <div class="btn camera" onclick="setChildValue('b4')"></div>
+        <div class="btn gallery" onclick="setChildValue('gallery')"></div>
+      </div>
+      <div class="start">사진 촬영 하기</div>
+    </div>
+    
+</body>
+
+</html>
