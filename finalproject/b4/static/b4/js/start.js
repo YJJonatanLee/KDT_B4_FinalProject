@@ -10,6 +10,13 @@ function setChildValue(index1) {
     // window.location.href = `indexcopy.html?${index1}?${index2}`;
 }
 
+
+
+// function setChildValue(index1) {
+//     window.location.href = `/${index1}`;
+//     // window.location.href = `indexcopy.html?${index1}?${index2}`;
+// }
+
 function popup_open() {
     document.querySelector("#pop_up_bg").style.display = 'flex';
 

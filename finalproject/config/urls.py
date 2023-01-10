@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('b4/',views.test),
     path('start/',views.start_page),
+    path('loading/',views.loading),
+    path('color/',views.bg_color),
     path('share/<int:id>',views.share_page),
     path('upload_photo',views.upload_photo),
     path('update/<int:id>',views.update_photo),

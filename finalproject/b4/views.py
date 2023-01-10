@@ -8,6 +8,12 @@ def test(request):
 # Create your views here.
 
 
+def loading(request):
+    return render(request,'loading.html')
+
+def bg_color(request):
+    return render(request,'bg_color.html')
+
 
 def share_page(request, id):
     # photo = Photos.objects.all()
