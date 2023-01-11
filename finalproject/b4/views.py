@@ -32,13 +32,6 @@ def upload_photo(request):
         photo.background_color = request.POST["color"]
         photo.background_photo = request.FILES["background"]
         photo.save()
-        # fileupload = Photos(
-        #     origin_photo = origin_photo,
-        #     converte_photo = converte_photo,
-        #     background_color = background_color,
-        #     background_photo = background_photo
-        # )
-        # fileupload.save()
         return redirect('/share/'+str(photo.id))
     else:
         return render(request, 'upload_photo.html')

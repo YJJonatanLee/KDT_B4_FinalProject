@@ -24,7 +24,8 @@ body {
 
 .main {
     background-color: rgb(33, 34, 43);
-    width: 30rem;
+    width: 100%;
+    max-width: 30rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

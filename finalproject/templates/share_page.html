@@ -10,11 +10,15 @@
 </head>
 <body>
     <div class="main">
-        <div class="title">축 졸업</div>
+      <div class="title_wrap">
+        <img lass="title" src="../static/b4/img/icon/title_share.png" alt="">
+      </div>
+      
+        <!-- <div class="title"></div> -->
         <!-- <div class="information"></div> -->
         <!-- <h1>asdf</h1> -->
       {% for p in photo.all %}
-        <img src={{ p.converte_photo.url }}>
+        <img class="result_photo" src={{ p.converte_photo.url }}>
       {% endfor %}  
       <div class="share_btn1">
         <div class="share i1"></div>

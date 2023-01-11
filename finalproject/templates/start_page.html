@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{% static 'b4/js/start.js' %}?after"></script>
+    
     <link rel="stylesheet" href="{% static 'b4/css/start.css' %}?after">
     <title>Document</title>
 </head>
@@ -30,25 +30,18 @@
         </div>
         
         
-          
-          
-        
-        <!-- <h1>asdf</h1> -->
-        <div class="input_img" onclick="popup_open()"></div>
-      <!-- {% for p in photo.all %}
-        <img src={{ p.converte_photo.url }}>
-      {% endfor %}   -->
-      <!-- <div class="share_btn1">
-        <div class="share i1"></div>
-        <div class="share i2"></div>
-        <div class="share i3"></div>
-      </div> -->
+        <div class="input_img" onclick="popup_open()">
+        </div>
+      
       <div class="pop_up_bg" id="pop_up_bg" onclick="popup_close()">
         <div class="pop_up">
           <div class="pop_up_name">사진 선택</div>
           <div class="btn_box">
             <div class="btn camera" onclick="setChildValue('b4')">카메라</div>
-            <div class="btn gallery" onclick="setChildValue('gallery')">갤러리</div>
+            <label class="btn gallery" for="file">
+              갤러리
+            </label>
+            <input  id="file" type="file" accept="images" style="display: none;"/>
           </div>
         </div>
       </div>
@@ -58,5 +51,5 @@
     </div>
     
 </body>
-
+<script src="{% static 'b4/js/start.js' %}?after"></script>
 </html>
