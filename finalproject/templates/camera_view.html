@@ -1,3 +1,4 @@
+
 <html>
   <head>
     <title>이미지 매개변수로 보내는 테스트</title>
@@ -9,16 +10,22 @@
       <br>
       <button id="capture" onclick="takePicture()">캡쳐</button>
     </div>
+
     <br>
     <h2>img라는 변수에 저장되어있는 image</h2>
-    
     <img id="img" width="200" height="150" alt="">
-
+    <form method="POST" enctype="form-action.php">
+      {% csrf_token %}
+      <input type="hidden" name="img" value="{{img}}">
+      <input type="submit" value="Submit">
+    </form>
+    
     <script>
       const video = document.getElementById("video");
       const canvas = document.createElement("canvas");
       const img = document.getElementById("img");
       const capture = document.getElementById("capture");
+
       const constraints = {
         video: {
           width: video.width,
@@ -33,15 +40,22 @@
           video.srcObject = stream;
         })
         .catch(err => console.log(err));
+      
+      function convertImgToBinary(image) {
+        var binaryData = [];
+        binaryData.push(image.data);
+        var data = new Uint8Array(binaryData);
+        return data;
+      }  
         
-
       const takePicture = () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         canvas.getContext("2d").drawImage(video, 0, 0);
         const data = canvas.toDataURL("image/png");
-        img.src = data;
+        img.src = data; 
       };
+
     </script>
   </body>
 </html>
