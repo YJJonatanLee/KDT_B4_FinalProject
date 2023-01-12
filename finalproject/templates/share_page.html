@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'b4/css/share.css' %}?after">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <title>Document</title>
 </head>
 <body>
     <div class="main">
       <div class="title_wrap">
-        <img lass="title" src="../static/b4/img/icon/title_share.png" alt="">
+        <img class="title" src="../static/b4/img/icon/title_share.png" alt="">
       </div>
       
         <!-- <div class="title"></div> -->
@@ -20,14 +21,18 @@
       {% for p in photo.all %}
         <img class="result_photo" src={{ p.converte_photo.url }}>
       {% endfor %}  
+      {% load social_share %}
       <div class="share_btn1">
-        <div class="share i1"></div>
-        <div class="share i2"></div>
-        <div class="share i3"></div>
+        {% post_to_facebook object_or_url '<img class="facebook" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/facebook.png" alt="">' %}
+        {% post_to_twitter '새로운 글!' post.get_absolute_url '<img class="twitter" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/twitter.png" alt="">' %}
+        <div class="share i3">{% send_email object.title "New Song: . Check it out!" object_or_url "Share via email" %}</div>
       </div>
       <div class="share_btn2">
         <div class="share i4"></div>
-        <div class="share i5"></div>
+        
+          {% copy_to_clipboard object_or_url '<img class="twitter" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/twitter.png" alt="">'%}
+          {% add_copy_script %}
+        
       </div>
       <div class="restart" onclick="go2next()">졸업사진 찍으러 가기</div>
     </div>

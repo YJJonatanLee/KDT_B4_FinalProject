@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'b4',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
