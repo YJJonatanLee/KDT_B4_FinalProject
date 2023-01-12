@@ -14,11 +14,6 @@
     <br>
     <h2>img라는 변수에 저장되어있는 image</h2>
     <img id="img" width="200" height="150" alt="">
-    <form method="POST" enctype="form-action.php">
-      {% csrf_token %}
-      <input type="hidden" name="img" value="{{img}}">
-      <input type="submit" value="Submit">
-    </form>
     
     <script>
       const video = document.getElementById("video");
