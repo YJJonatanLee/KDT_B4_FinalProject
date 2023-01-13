@@ -2,6 +2,9 @@ import base64
 import cv2
 import numpy as np
 import os
+from django.shortcuts import get_object_or_404
+import urllib
+
 
 def make_file_list(path_dir):
     file_list = os.listdir(path_dir)
@@ -41,12 +44,23 @@ def loading(request):
 def bg_color(request):
     return render(request,'bg_color.html')
 
-
 def share_page(request, id):
     # photo = Photos.objects.all()
     # print(photo.converte_photo)
     photo = Photos.objects.filter(id = id)
     return render(request,'share_page.html',{'photo':photo})
+
+
+def file_download(request, id):
+    photo = get_object_or_404(Photos, id = id)
+    url = photo.converte_photo.url[1:]
+    file_path = urllib.parse.unquote(url)
+    file_type = 'image/png'  
+    binary_file = open(file_path, 'rb')
+    response = HttpResponse(binary_file.read(), content_type=file_type)
+    response['Content-Disposition'] = 'attachment; filename=네모네모.png'
+    return response
+
 
 def start_page(request):
     return render(request,'start_page.html')

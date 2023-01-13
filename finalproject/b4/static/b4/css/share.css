@@ -38,11 +38,6 @@ body {
     
 }
 
-
-/* .information {
-    height:1rem;
-    width: 1rem;
-} */
 .result_photo {
     /* padding: 1.5rem; */
     width: 12.8rem;
@@ -54,37 +49,12 @@ body {
 .share_btn1 {
     display: grid;
     column-gap: 1rem;
-    grid-template-columns: 2.5rem 2.5rem 2.5rem;
+    grid-template-columns: 2.5rem 2.5rem 2.5rem 2.5rem ;
     height: 2.5rem;
     padding-top: 1rem;
     padding-bottom: 0.5rem;
 }
-.share_btn2 {
-    display: grid;
-    column-gap: 1rem;
-    grid-template-columns: 2.5rem 2.5rem;
-    height: 2.5rem;
-}
 
-.i1 {
-    background-color: yellow;
-}
-
-.i2 {
-    background-color: skyblue;
-}
-
-.i3 {
-    background-color: rgb(238, 54, 255);
-}
-
-.i4 {
-    background-color: rgb(139, 139, 139);
-}
-
-.i5 {
-    background-color: rgb(255, 145, 101);
-}
 
 .restart {
     color: rgb(144, 148, 160);
