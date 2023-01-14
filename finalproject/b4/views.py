@@ -1,8 +1,12 @@
 import base64
+import io
 import cv2
+from django import apps
 import numpy as np
 import os
 from django.shortcuts import get_object_or_404
+
+
 import urllib
 
 
@@ -30,14 +34,24 @@ files, file_names = make_file_list(path_dir)
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Photos,Test
+from .models import Photos
+from django.views.decorators.csrf import csrf_exempt
+from PIL import Image
 
 
+
+@csrf_exempt
 def test(request):
-    return render(request,'camera_view.html')
+    if request.method == 'POST':
+        canvas_snapshot = request.POST.get('canvas_snapshot', None)
+        if canvas_snapshot:
+            with open('media/origin/image.png', 'w') as f:
+                f.write(canvas_snapshot[len('data:image/png;base64,'):])
+    return render(request, 'camera_view.html')
 
 
 def loading(request):
+    
     Cutting_face_save(cv2.imread(os.path.join(path_dir, files[0])), file_names[0], saving_dir)
     return render(request,'loading.html')
 
@@ -81,20 +95,3 @@ def update_photo(request, id):
     photo = Photos.objects.filter(id = id)
     photo.update(background_color='가')
     return render(request,'share_page.html',{'photo':photo})
-
-def django_html_webcam_image_upload(request):
-    if request.method == 'POST':
-        img_base64 = request.POST['imgBase64']
-        img_data = img_base64.split(',')[1] # remove the metadata
-
-        # save the image in the "static/b4/img" folder
-        with open('static/b4/img/image.png', 'wb') as fh:
-            fh.write(base64.b64decode(img_data))
-        return HttpResponse('Image uploaded successfully!')
-
-
-
-
-
-
-    

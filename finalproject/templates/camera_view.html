@@ -35,22 +35,18 @@
           video.srcObject = stream;
         })
         .catch(err => console.log(err));
-      
-      function convertImgToBinary(image) {
-        var binaryData = [];
-        binaryData.push(image.data);
-        var data = new Uint8Array(binaryData);
-        return data;
-      }  
         
       const takePicture = () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         canvas.getContext("2d").drawImage(video, 0, 0);
-        const data = canvas.toDataURL("image/png");
-        img.src = data; 
+        let canvas_snapshot = canvas.toDataURL('image/png');
+        img.src = canvas_snapshot; 
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/test/", true);
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhttp.send(`canvas_snapshot=${canvas_snapshot}`);
       };
-
     </script>
   </body>
 </html>

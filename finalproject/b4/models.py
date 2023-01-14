@@ -1,5 +1,4 @@
 from django.db import models
-import uuid
 
 class Photos(models.Model):
     id = models.AutoField(primary_key=True)
@@ -8,7 +7,3 @@ class Photos(models.Model):
     converte_photo = models.ImageField(upload_to="converte")
     background_color = models.CharField(default='',max_length=3)
     background_photo = models.ImageField(upload_to="background")
-
-
-class Test(models.Model):
-    origin_photo = models.ImageField(upload_to="origin",null=True)

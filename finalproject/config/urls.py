@@ -30,6 +30,7 @@ urlpatterns = [
     path('share/download/<int:id>', views.file_download, name='download'),
     path('upload_photo',views.upload_photo),
     path('update/<int:id>',views.update_photo),
+    path('test/', views.test, name='test'),  
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
