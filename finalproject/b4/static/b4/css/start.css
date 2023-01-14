@@ -25,21 +25,34 @@ body {
     align-items: center;
 }
 .main {
-    background-color: rgb(224, 201, 156);
+    /* background-color: rgb(224, 201, 156); */
     max-width: 30rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    /* background-image: url('../img/icon/start_bg.png'); */
     /* justify-content: center; */
 }
 
+.bg {
+    display: flex;
+    height: 45rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-position: top;
+    background-size : cover;
+    background-image: url('../img/icon/start_bg.png')
+}
+
 .title {
-    color: rgb(144, 148, 160);
+    color: rgb(80, 120, 241);
     font-size: 3rem;
     padding-top: 2rem;
     padding: 1rem;
+    font-weight: bold;
 }
 .inf_box {
     width: 100%;
@@ -86,7 +99,7 @@ body {
 }
 
 .input_img {
-    padding: 1.5rem;
+    /* margin: 1.5rem; */
     width: 12.8rem;
     height: 16.4rem;
     background-color: rgb(139, 139, 139);
@@ -162,4 +175,5 @@ body {
     margin: 1rem;
     padding: 0.5rem;
     border: 4px solid rgb(144, 148, 160);
+    background-color: white;
 }
