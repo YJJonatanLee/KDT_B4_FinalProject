@@ -1,4 +1,3 @@
-
 <html>
   <head>
     <title>이미지 매개변수로 보내는 테스트</title>
@@ -8,45 +7,40 @@
     <div>
       <video id="video" width="800" height="600" autoplay></video>
       <br>
-      <button id="capture" onclick="takePicture()">캡쳐</button>
+      <button onclick="captureImage()">캡쳐</button>
     </div>
-
-    <br>
-    <h2>img라는 변수에 저장되어있는 image</h2>
-    <img id="img" width="200" height="150" alt="">
-    
+    <div>
+      <br>
+      서버에 저장된 이미지는 아래의 리스트를 통해 확인 가능합니다.
+    </div>
+    <div>
+      {% for image in images %}
+        <img src="{{ image.image.url }}" width="200" height="150">
+      {% endfor %}
+    </div>
     <script>
-      const video = document.getElementById("video");
-      const canvas = document.createElement("canvas");
-      const img = document.getElementById("img");
-      const capture = document.getElementById("capture");
-
-      const constraints = {
-        video: {
-          width: video.width,
-          height: video.height
-        }
-      };
-
-      //미디어 디바이스 접근 요청
-      navigator.mediaDevices
-        .getUserMedia(constraints)
+      const video = document.getElementById('video');
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      
+      navigator.mediaDevices.getUserMedia({ video: true })
         .then(stream => {
           video.srcObject = stream;
-        })
-        .catch(err => console.log(err));
-        
-      const takePicture = () => {
+        });
+      
+      function captureImage() {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
-        canvas.getContext("2d").drawImage(video, 0, 0);
-        let canvas_snapshot = canvas.toDataURL('image/png');
-        img.src = canvas_snapshot; 
-        let xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/test/", true);
-        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhttp.send(`canvas_snapshot=${canvas_snapshot}`);
-      };
+        context.drawImage(video, 0, 0);
+        canvas.toBlob(blob => {
+          const formData = new FormData();
+          formData.append('camera-image', blob);
+          fetch('/test/', {
+            method: 'POST',
+            body: formData
+          });
+        });
+      }
     </script>
   </body>
 </html>

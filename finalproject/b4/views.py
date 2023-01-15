@@ -34,24 +34,24 @@ files, file_names = make_file_list(path_dir)
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Photos
+from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
-from PIL import Image
 
 
 
 @csrf_exempt
 def test(request):
     if request.method == 'POST':
-        canvas_snapshot = request.POST.get('canvas_snapshot', None)
-        if canvas_snapshot:
-            with open('media/origin/image.png', 'w') as f:
-                f.write(canvas_snapshot[len('data:image/png;base64,'):])
-    return render(request, 'camera_view.html')
+        image = request.FILES.get('camera-image')
+        CameraImage.objects.create(image=image)
+    images = CameraImage.objects.all()
+    context = {
+        'images': images
+    }
+    return render(request, 'camera_view.html', context)
 
 
 def loading(request):
-    
     Cutting_face_save(cv2.imread(os.path.join(path_dir, files[0])), file_names[0], saving_dir)
     return render(request,'loading.html')
 
