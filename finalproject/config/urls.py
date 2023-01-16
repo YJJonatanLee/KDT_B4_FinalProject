@@ -25,7 +25,7 @@ urlpatterns = [
     path('b4/',views.test),
     path('start/',views.start_page),
     path('loading/',views.loading),
-    path('color/',views.bg_color),
+    path('color/',views.bg_color, name='color'),
     path('share/<int:id>',views.share_page),
     path('share/download/<int:id>', views.file_download, name='download'),
     path('upload_photo',views.upload_photo),

@@ -18,22 +18,96 @@
       {% endfor %}   -->
 
       <div class="bg_img"></div>
+
+
+      <!-- <ul class="product-color">
+        <li>
+          <input type="radio" name="color" id="red"/>
+          <label for="red" style="background-color:red"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#A2C2C9"/>
+          <label for="#A2C2C9" style="background-color:#A2C2C9"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#EFDBD4"/>
+          <label for="#EFDBD4" style="background-color:#EFDBD4"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#2196F3"/>
+          <label for="#2196F3" style="background-color:#2196F3"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#4CAF50"/>
+          <label for="#4CAF50" style="background-color:#4CAF50"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#00BCD4" checked="checked"/>
+          <label for="#00BCD4" style="background-color:#00BCD4"></label>
+        </li>
+      </ul> -->
+
+
+      <form action="{% url 'color' %}" method="POST">
+        
+      {% csrf_token %}
       <div class="color_btn1">
-        <div class="color i1"></div>
-        <div class="color i2"></div>
-        <div class="color i3"></div>
-        <div class="color i4"></div>
-        <div class="color i5"></div>
+        
+          <input type="radio" name="color" id="0" value="0" class="color"/>
+          <label for="0" style="background-color:#ffa3a3;"></label>
+        
+        
+          <input type="radio" name="color" id="1" value="1" class="color"/>
+          <label for="1" style="background-color:#ffc0a3"></label>
+        
+        
+          <input type="radio" name="color" id="2" value="2" class="color"/>
+          <label for="2" style="background-color:#fff1a3"></label>
+        
+        
+          <input type="radio" name="color" id="3"  value="3" class="color"/>
+          <label for="3" style="background-color:#b5ffa3"></label>
+        
+        
+          <input type="radio" name="color" id="4"  value="4" class="color"/>
+          <label for="4" style="background-color:#a3cbff"></label>
+        
+        <!-- <div class="color_wrap"><div class="color i1"></div></div> -->
       </div>
       <div class="color_btn2">
-        <div class="color i6"></div>
-        <div class="color i7"></div>
-        <div class="color i8"></div>
-        <div class="color i9"></div>
-        <div class="color i10"></div>
-      </div>
-      <div class="next" onclick="go2share()">졸업사진 보러 가기</div>
+        
+        <input type="radio" name="color" id="5" value="5" class="color"/>
+        <label for="5" style="background-color:#b4a3ff;"></label>
+      
+      
+        <input type="radio" name="color" id="6" value="6" class="color"/>
+        <label for="6" style="background-color:#ffa3e3"></label>
+      
+      
+        <input type="radio" name="color" id="7" value="7" class="color"/>
+        <label for="7" style="background-color:#ebdbd5"></label>
+      
+      
+        <input type="radio" name="color" id="8"  value="8" class="color"/>
+        <label for="8" style="background-color:#ffffff"></label>
+      
+      
+        <input type="radio" name="color" id="9"  value="9" class="color"/>
+        <label for="9" style="background-color:#6e6e6e"></label>
+      
+      <!-- <div class="color_wrap"><div class="color i1"></div></div> -->
     </div>
     
+      <!-- <div class="color_btn2">
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+      </div>
+      <div class="next" onclick="go2share()">졸업사진 보러 가기</div> -->
+      <input class="next" type="submit" value="졸업사진 보러 가기">
+    </div>
+  </form>
 </body>
 </html>

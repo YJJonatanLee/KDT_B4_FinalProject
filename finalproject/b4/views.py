@@ -56,7 +56,22 @@ def loading(request):
     return render(request,'loading.html')
 
 def bg_color(request):
-    return render(request,'bg_color.html')
+    if request.method == 'POST':
+        photo = Photos.objects.filter(id="1")
+        color=request.POST.get('color')
+        photo.update(background_color=color)
+
+    # try:
+    #     selected_choice = question.choice_set.get(pk=request.POST['color'])
+    #     print(selected_choice)
+    # except (KeyError, Choice.DoesNotExist):
+    #     print(123)
+    #     # Redisplay the question voting form.
+    #     return render(request, 'bg_color.html')
+        return redirect('/share/'+str(1))
+    else:
+        print(123)
+        return render(request,'bg_color.html')
 
 def share_page(request, id):
     # photo = Photos.objects.all()
