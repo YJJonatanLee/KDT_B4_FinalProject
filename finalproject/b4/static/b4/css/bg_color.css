@@ -24,7 +24,7 @@ body {
     align-items: center;
 }
 .main {
-    background-color: rgb(114, 118, 153);
+    background-color: #ded9c6;
     width: 30rem;
     min-height: 100vh;
     display: flex;
