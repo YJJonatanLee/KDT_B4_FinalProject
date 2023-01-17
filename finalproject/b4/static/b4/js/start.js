@@ -24,22 +24,19 @@ function captureImage() {
     });
 }
 
-//임의로 넣어둠.
-function captureImage() {
+function setChildValue(index1) {
+
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     context.drawImage(video, 0, 0);
     canvas.toBlob(blob => {
-      const formData = new FormData();
-      formData.append('camera-image', blob);
-      fetch('/test/', {
-        method: 'POST',
-        body: formData
-      });
-    });
-  }
-
-function setChildValue(index1) {
+        const formData = new FormData();
+        formData.append('camera-image', blob);
+        fetch('/start/', {
+            method: 'POST',
+            body: formData
+          });
+        });
     window.location.href = `/${index1}`;
     // window.location.href = `indexcopy.html?${index1}?${index2}`;
 }

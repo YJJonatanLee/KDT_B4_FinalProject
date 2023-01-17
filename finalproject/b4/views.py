@@ -5,8 +5,6 @@ from django import apps
 import numpy as np
 import os
 from django.shortcuts import get_object_or_404
-
-
 import urllib
 
 
@@ -27,7 +25,7 @@ def Cutting_face_save(image, name, saving_dir):
         cv2.imwrite(os.path.join(saving_dir, f"{name}.jpg"), resize)
 
 
-path_dir = 'media/origin/'
+path_dir = 'media/origin_img/'
 saving_dir = 'media/cutting_faces/'
 files, file_names = make_file_list(path_dir)
 
@@ -36,10 +34,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
-
+from PIL import Image
 
 
 @csrf_exempt
+#text function 삭제x
 def test(request):
     if request.method == 'POST':
         image = request.FILES.get('camera-image')
@@ -90,8 +89,18 @@ def file_download(request, id):
     response['Content-Disposition'] = 'attachment; filename=네모네모.png'
     return response
 
-
+@csrf_exempt
 def start_page(request):
+    if request.method == 'POST':
+        image = request.FILES.get('camera-image')
+        CameraImage.objects.create(image=image)
+        images = CameraImage.objects.all()
+
+        #임시 작성 코드
+        for i in images:
+            img=Image.open(i.image)
+            img.save('media/origin_img/img.png','PNG')
+        
     return render(request,'start_page.html')
 
 def upload_photo(request):

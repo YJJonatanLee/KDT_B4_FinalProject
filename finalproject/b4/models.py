@@ -9,5 +9,5 @@ class Photos(models.Model):
     background_photo = models.ImageField(upload_to="background")
 
 class CameraImage(models.Model):
-    image = models.ImageField(upload_to="origin")
+    image = models.ImageField(upload_to="origin_blob")
     timestamp = models.DateTimeField(auto_now_add=True)
