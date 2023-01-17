@@ -31,6 +31,7 @@ urlpatterns = [
     path('upload_photo',views.upload_photo),
     path('update/<int:id>',views.update_photo),
     path('test/', views.test, name='test'),  
+    path('create/', views.create_character),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

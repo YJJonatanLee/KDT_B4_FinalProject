@@ -59,14 +59,6 @@ def bg_color(request):
         photo = Photos.objects.filter(id="1")
         color=request.POST.get('color')
         photo.update(background_color=color)
-
-    # try:
-    #     selected_choice = question.choice_set.get(pk=request.POST['color'])
-    #     print(selected_choice)
-    # except (KeyError, Choice.DoesNotExist):
-    #     print(123)
-    #     # Redisplay the question voting form.
-    #     return render(request, 'bg_color.html')
         return redirect('/share/'+str(1))
     else:
         print(123)
@@ -119,3 +111,62 @@ def update_photo(request, id):
     photo = Photos.objects.filter(id = id)
     photo.update(background_color='가')
     return render(request,'share_page.html',{'photo':photo})
+
+import PIL
+from django.conf import settings
+
+def create_character(request):
+    result = {'face_lenth':'0', 'hair_style':'long', 'front_hair_style':'short','face_color':0, "hair_color":(0,0,0), 'eye':'x','emotion':'0'}
+    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/img/character/'
+    char_path ='face'+result['face_lenth']
+
+    face = Image.open(dir+char_path+'/face'+result['face_lenth']+'_0.png')
+    face_shadow = Image.open(dir+char_path+'/face'+result['face_lenth']+'_1.png')
+    face_emotion = Image.open(dir+char_path+'/emotion'+result['face_lenth']+'_'+result['eye']+'_'+result['emotion']+'.png')
+    face.paste(face_shadow,(0,0),face_shadow)
+    face.paste(face_emotion,(0,0),face_emotion)
+
+    if result['hair_style'] in ['medium', 'long','longwave', 'mediumwave']:
+        back_hair = Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_2.png')
+        if result['hair_style']=='longwave':
+            back_hair_highlight=Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_0.png')
+            back_hair.paste(back_hair_highlight,(0,0),back_hair_highlight)
+    elif result['hair_style']!='short' and result['hair_style']!='bald':
+        back_hair = Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_0.png')
+        back_hair_shadow=Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_2.png')
+        back_hair.paste(back_hair_shadow,(0,0),back_hair_shadow)
+        if result['hair_style']=='ponytail':
+            accessory = Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_3.png')
+            back_hair.paste(accessory,(0,0),accessory)
+        elif result['hair_style']=='braided':
+            back_hair_highlight=Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_1.png')
+            back_hair.paste(back_hair_highlight,(0,0),back_hair_highlight)
+    
+    if result['hair_style']!='bald':
+        front_hair=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_faceshadow.png')
+        front_hair_main=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_0.png')
+        front_hair_highlight=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_1.png')
+        front_hair_shadow=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_2.png')
+        front_hair.paste(front_hair_main,(0,0),front_hair_main)
+        front_hair.paste(front_hair_highlight,(0,0),front_hair_highlight)
+        front_hair.paste(front_hair_shadow,(0,0),front_hair_shadow)
+
+    uniform=Image.open(dir+'uniform.png')
+    if result['hair_style']!='bald':
+        face.paste(front_hair,(0,0),front_hair)
+        if result['hair_style'] != 'short':
+            back_hair.paste(face,(0,0),face)
+            back_hair.paste(uniform,(0,0),uniform)
+            back_hair.save('media/test/new1.png','PNG')
+        else:
+            face.paste(uniform,(0,0),uniform)
+            face.save('media/test/new1.png','PNG')
+    else:
+        face.paste(uniform,(0,0),uniform)
+        face.save('media/test/new1.png','PNG')
+    # asd=Image.open(dir+'0/face0_0.png')
+    # asd1=Image.open(dir+'static/b4/img/character/face0/face0_1.png') 
+    
+    # asd.paste(asd1,(0,0),asd1)
+    
+    return render(request,'loading.html')
