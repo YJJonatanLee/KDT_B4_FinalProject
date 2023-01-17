@@ -25,12 +25,13 @@ urlpatterns = [
     path('b4/',views.test),
     path('start/',views.start_page),
     path('loading/',views.loading),
-    path('color/',views.bg_color),
+    path('color/',views.bg_color, name='color'),
     path('share/<int:id>',views.share_page),
     path('share/download/<int:id>', views.file_download, name='download'),
     path('upload_photo',views.upload_photo),
     path('update/<int:id>',views.update_photo),
     path('test/', views.test, name='test'),  
+    path('create/', views.create_character),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

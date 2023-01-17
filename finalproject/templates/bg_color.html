@@ -18,22 +18,103 @@
       {% endfor %}   -->
 
       <div class="bg_img"></div>
+
+
+      <!-- <ul class="product-color">
+        <li>
+          <input type="radio" name="color" id="red"/>
+          <label for="red" style="background-color:red"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#A2C2C9"/>
+          <label for="#A2C2C9" style="background-color:#A2C2C9"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#EFDBD4"/>
+          <label for="#EFDBD4" style="background-color:#EFDBD4"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#2196F3"/>
+          <label for="#2196F3" style="background-color:#2196F3"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#4CAF50"/>
+          <label for="#4CAF50" style="background-color:#4CAF50"></label>
+        </li>
+        <li>
+          <input type="radio" name="color" id="#00BCD4" checked="checked"/>
+          <label for="#00BCD4" style="background-color:#00BCD4"></label>
+        </li>
+      </ul> -->
+
+
+      <form action="{% url 'color' %}" method="POST">
+        
+      {% csrf_token %}
       <div class="color_btn1">
-        <div class="color i1"></div>
-        <div class="color i2"></div>
-        <div class="color i3"></div>
-        <div class="color i4"></div>
-        <div class="color i5"></div>
+        
+          <input type="radio" name="color" id="0" value="#ffa3a3" class="color" onclick="changeBg(this.value)"/>
+          <label for="0" style="background-color:#ffa3a3;"></label>
+        
+        
+          <input type="radio" name="color" id="1" value="#ffc0a3" class="color" onclick="changeBg(this.value)"/>
+          <label for="1" style="background-color:#ffc0a3"></label>
+        
+        
+          <input type="radio" name="color" id="2" value="#fff1a3" class="color" onclick="changeBg(this.value)"/>
+          <label for="2" style="background-color:#fff1a3"></label>
+        
+        
+          <input type="radio" name="color" id="3"  value="#b5ffa3" class="color" onclick="changeBg(this.value)"/>
+          <label for="3" style="background-color:#b5ffa3"></label>
+        
+        
+          <input type="radio" name="color" id="4"  value="#a3cbff" class="color" onclick="changeBg(this.value)"/>
+          <label for="4" style="background-color:#a3cbff"></label>
+        
+        <!-- <div class="color_wrap"><div class="color i1"></div></div> -->
       </div>
       <div class="color_btn2">
-        <div class="color i6"></div>
-        <div class="color i7"></div>
-        <div class="color i8"></div>
-        <div class="color i9"></div>
-        <div class="color i10"></div>
-      </div>
-      <div class="next" onclick="go2share()">졸업사진 보러 가기</div>
+        
+        <input type="radio" name="color" id="5" value="#b4a3ff" class="color" onclick="changeBg(this.value)"/>
+        <label for="5" style="background-color:#b4a3ff;"></label>
+      
+      
+        <input type="radio" name="color" id="6" value="#ffa3e3" class="color" onclick="changeBg(this.value)"/>
+        <label for="6" style="background-color:#ffa3e3"></label>
+      
+      
+        <input type="radio" name="color" id="7" value="#ebdbd5" class="color" onclick="changeBg(this.value)"/>
+        <label for="7" style="background-color:#ebdbd5"></label>
+      
+      
+        <input type="radio" name="color" id="8"  value="#ffffff" class="color" onclick="changeBg(this.value)"/>
+        <label for="8" style="background-color:#ffffff"></label>
+      
+      
+        <input type="radio" name="color" id="9"  value="#6e6e6e" class="color"/>
+        <label for="9" style="background-color:#6e6e6e"></label>
+      
+      <!-- <div class="color_wrap"><div class="color i1"></div></div> -->
     </div>
     
+      <!-- <div class="color_btn2">
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+        <div class="color_wrap"><div class="color i1"></div></div>
+      </div>
+      <div class="next" onclick="go2share()">졸업사진 보러 가기</div> -->
+      <input class="next" type="submit" value="졸업사진 보러 가기">
+    </div>
+  </form>
+  <script language = "javascript">
+    // const bg_img = document.querySelector(".bg_img");
+    function changeBg(color){
+      document.querySelector(".bg_img").style.backgroundColor = color;
+    }
+    
+    </script>
 </body>
 </html>

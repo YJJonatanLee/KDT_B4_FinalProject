@@ -101,11 +101,11 @@ body {
 
 }
 
-.input_img {
+
+.video {
     /* margin: 1.5rem; */
     width: 12.8rem;
     height: 16.4rem;
-    background-color: rgb(139, 139, 139);
     /* background-size: cover; */
   }
 
