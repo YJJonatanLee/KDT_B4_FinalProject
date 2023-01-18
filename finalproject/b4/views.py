@@ -112,19 +112,36 @@ def update_photo(request, id):
     photo.update(background_color='가')
     return render(request,'share_page.html',{'photo':photo})
 
-import PIL
-from django.conf import settings
+
+
+def change_color(image, face_color, hair_color):
+    px = image.load()
+    for i in range(0, 640):
+        for j in range(0, 820):
+            if px[i, j]==(255, 224, 189, 255):
+                px[i, j] = face_color[0]
+            elif px[i, j] == (255, 205, 148, 255):
+                px[i, j] = face_color[1]
+            elif px[i, j] == (118, 83, 57, 255):
+                px[i, j] = hair_color
+            elif px[i, j] == (76, 45, 23, 255):
+                px[i, j] = (hair_color[0]-30, hair_color[1]-30, hair_color[2]-30)
+            elif px[i, j] != (0, 0, 0, 0):
+                # print(px[i, j])
+                px[i, j] = (hair_color[0]+30, hair_color[1]+30, hair_color[2]+30)
+            # elif px[i, j]!=(0, 0, 0, 0):
+            #     print(px[i, j])
+
 
 def create_character(request):
-    result = {'face_lenth':'0', 'hair_style':'long', 'front_hair_style':'short','face_color':0, "hair_color":(0,0,0), 'eye':'x','emotion':'0'}
+    result = {'face_lenth':'0', 'hair_style':'short', 'front_hair_style':'short','face_color':[(255, 243, 219) ,((255, 232, 190))], "hair_color":(186,212,237), 'eye':'o','emotion':'3'}
     dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/img/character/'
     char_path ='face'+result['face_lenth']
 
     face = Image.open(dir+char_path+'/face'+result['face_lenth']+'_0.png')
     face_shadow = Image.open(dir+char_path+'/face'+result['face_lenth']+'_1.png')
-    face_emotion = Image.open(dir+char_path+'/emotion'+result['face_lenth']+'_'+result['eye']+'_'+result['emotion']+'.png')
     face.paste(face_shadow,(0,0),face_shadow)
-    face.paste(face_emotion,(0,0),face_emotion)
+    # face.paste(face_emotion,(0,0),face_emotion)
 
     if result['hair_style'] in ['medium', 'long','longwave', 'mediumwave']:
         back_hair = Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_2.png')
@@ -152,21 +169,27 @@ def create_character(request):
         front_hair.paste(front_hair_shadow,(0,0),front_hair_shadow)
 
     uniform=Image.open(dir+'uniform.png')
+    face_emotion = Image.open(dir+char_path+'/emotion'+result['face_lenth']+'_'+result['eye']+'_'+result['emotion']+'.png')
     if result['hair_style']!='bald':
         face.paste(front_hair,(0,0),front_hair)
         if result['hair_style'] != 'short':
             back_hair.paste(face,(0,0),face)
+            change_color(back_hair, result['face_color'], result['hair_color'])
+            back_hair.paste(face_emotion,(0,0),face_emotion)
             back_hair.paste(uniform,(0,0),uniform)
             back_hair.save('media/test/new1.png','PNG')
         else:
+            change_color(face, result['face_color'], result['hair_color'])
+            face.paste(face_emotion,(0,0),face_emotion)
             face.paste(uniform,(0,0),uniform)
             face.save('media/test/new1.png','PNG')
     else:
+        change_color(face, result['face_color'], result['hair_color'])
+        face.paste(face_emotion,(0,0),face_emotion)
         face.paste(uniform,(0,0),uniform)
         face.save('media/test/new1.png','PNG')
-    # asd=Image.open(dir+'0/face0_0.png')
-    # asd1=Image.open(dir+'static/b4/img/character/face0/face0_1.png') 
-    
-    # asd.paste(asd1,(0,0),asd1)
     
     return render(request,'loading.html')
+
+
+   
