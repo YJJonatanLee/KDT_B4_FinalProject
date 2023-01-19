@@ -189,6 +189,15 @@ body {
     background-color: rgb(255, 145, 101);
 }
 
+.camera_btn {
+    /* content: '재촬영'; */
+    background-color: rgb(139, 139, 139);
+}
+
+.gallery_btn {
+    background-color: rgb(255, 145, 101);
+}
+
 .start {
     color: rgb(144, 148, 160);
     font-size: 1rem;
