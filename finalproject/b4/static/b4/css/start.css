@@ -101,13 +101,30 @@ body {
 
 }
 
+.input_img {
+    width: 12.8rem;
+    height: 16.4rem;
+    display: flex;
+    
+}
+
 
 .video {
     /* margin: 1.5rem; */
     width: 12.8rem;
     height: 16.4rem;
+    object-fit: cover;
+    position:absolute;  
     /* background-size: cover; */
-  }
+}
+
+.guideline {
+    width: 12.8rem;
+    height: 16.4rem;
+    position:absolute;  
+    background-size : cover;
+    background-image: url('../img/icon/guideline.png')
+}
 
 /* .share_btn1 {
     display: grid;
