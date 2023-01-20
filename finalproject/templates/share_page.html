@@ -14,10 +14,17 @@
       <div class="title_wrap">
         <img class="title" src="../static/b4/img/icon/title_share.png" alt="">
       </div>
+
+      <div class="line1"></div>
       
       {% for p in photo.all %}
         <img class="result_photo" src={{ p.converte_photo.url }}>
       {% endfor %}  
+
+      <div class="school_name">
+        <span class="name">네모네모고등학교</span>
+        <span class="eng">NEMONEMO HIGH SCHOOL</span>
+      </div>
 
       {% load social_share %}
       <div class="share_btn1">
@@ -30,12 +37,13 @@
         {% endfor %}  
         {% copy_to_clipboard object_or_url '<img class="link" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/link.png" alt="">'%}
         {% add_copy_script %}
-          <style>
+          <!-- <style>
             button {
               background-color: transparent;
               padding: 0;
+              border: none;
             }
-            </style>
+            </style> -->
       </div>
       <div class="restart" onclick="go2next()">졸업사진 찍으러 가기</div>
     </div>

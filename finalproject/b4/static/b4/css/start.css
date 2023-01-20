@@ -51,22 +51,31 @@ body {
     background-color: rgba(255, 255, 255, 0.55);
     color: rgb(80, 120, 241);
     font-size: 3rem;
-    padding-top: 2rem;
-    padding: 1rem;
+    
+    padding: 1.5rem;
+    /* padding-top: 3rem; */
     font-weight: bold;
     text-shadow: -4px 0 rgb(54, 91, 202), 0 4px rgb(54, 91, 202), 4px 0 rgb(54, 91, 202), 0 -4px rgb(54, 91, 202);
 }
+
 .inf_box {
     position:absolute;
     width: 100%;
     max-width: 30rem;
-    top: 8rem;
+    top: 9rem;
     display: flex;
     justify-content: right;
     padding: 1rem;
 }
 
 .information {
+    height:2rem;
+    width: 2rem;
+    margin-right: 1rem;
+    background-image: url('../img/icon/popup_icon1.png');
+}
+
+.information:hover {
     height:2rem;
     width: 2rem;
     margin-right: 1rem;
@@ -98,7 +107,7 @@ body {
     width: 12.8rem;
     height: 16.4rem;
     display: flex;
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
 }
 
@@ -183,18 +192,24 @@ body {
     background-color: rgb(255, 145, 101);
 }
 
+
+
+
 .photo_bnt {
     display: grid;
+    margin-top: 2rem;
     column-gap: 3rem;
-    grid-template-columns: 9rem 9rem;
-    height: 3rem;
+    grid-template-columns: 6rem 6rem;
+    height: 2.5rem;
     
 }
 
 .pixel {
     position: absolute;
-    clip-path: polygon(0% 4px, 4px 4px, 4px 0%, calc(100% + -4px) 0%, calc(100% + -4px) 4px, 100% 4px, 100% calc(100% + -4px), 
-    calc(100% + -4px) calc(100% + -4px), calc(100% + -4px) 100%, 4px 100%, 4px calc(100% + -4px), 0% calc(100% + -4px));
+    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%, 
+    calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px, 
+    100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%, 
+    8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
 }
 
 .camera_box{
@@ -206,8 +221,8 @@ body {
 }
 
 .camera_shadow {
-    width: 9rem;
-    height: 3rem;
+    width: 6rem;
+    height: 2.5rem;
     background-color: rgb(53, 53, 53);
     transform: translate(0, 8px);
 }
@@ -215,8 +230,9 @@ body {
 
 .camera_btn {
     /* content: '재촬영'; */
-    width: 9rem;
-    height: 3rem;
+    color: rgb(53, 53, 53);
+    width: 6rem;
+    height: 2.5rem;
     background-color: rgb(139, 139, 139);
     font-size: 1rem;
     font-weight: bold;
@@ -229,15 +245,16 @@ body {
 
 
 .gallery_shadow {
-    width: 9rem;
-    height: 3rem;
+    width: 6rem;
+    height: 2.5rem;
     background-color: rgb(184, 91, 55);
     transform: translate(0, 8px);
 }
 
 .gallery_btn {
-    width: 9rem;
-    height: 3rem;
+    color: rgb(184, 91, 55);
+    width: 6rem;
+    height: 2.5rem;
     background-color: rgb(255, 145, 101);
     font-size: 1rem;
     font-weight: bold;
@@ -251,8 +268,8 @@ body {
 .start_box{
     display: flex;
     width: 100%;
-    height: 3rem;
-    margin-top: 1rem;
+    height: 2.5rem;
+    margin-top: 1.5rem;
 }
 
 .start {
@@ -263,8 +280,8 @@ body {
     /* text-shadow:1px 1px rgb(255, 113, 113), -1px -1px rgb(99, 0, 0); */
     font-size: 1rem;
     font-weight: bold;
-    width: 10rem;
-    height: 3rem;
+    width: 9rem;
+    height: 2.5rem;
     /* margin: 1rem; */
     padding: 0.5rem;
     /* border: 4px solid rgb(144, 148, 160); */
@@ -282,8 +299,8 @@ body {
     position: absolute;
     left: 50%;
     /* top: 4px; */
-    width: 10rem;
-    height: 3rem;
+    width: 9rem;
+    height: 2.5rem;
     transform: translate(-50%, 8px);
     background-color: rgb(163, 20, 20);
     /* clip-path: polygon(0% 4px, 4px 4px, 4px 0%, calc(100% + -4px) 0%, calc(100% + -4px) 4px, 100% 4px, 100% calc(100% + -4px), 

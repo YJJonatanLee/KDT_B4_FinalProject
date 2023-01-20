@@ -23,18 +23,36 @@ body {
     align-items: center;
 }
 .main {
-    background-color: #091222;
+    background-color: #12213a;
     width: 100%;
     max-width: 30rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 8px solid #0e192e;
+    position:relative;
     /* justify-content: center; */
 }
+
+.line1{
+    background-color: #070e1b;
+    position: absolute;
+    width: 6px;
+    height: 100% ;
+    /* min-height: 100vh; */
+    transform: translate(-11.5rem, 0);
+    /* border: 12px solid #0e192e; */
+    border-left: 6px solid #0e192e;
+    border-right: 4px solid #0e192e;
+}
+
 .title_wrap{
-    padding-top: 1rem;
+    padding-top: 1.2rem;
     padding-bottom: 1rem;
+    filter: drop-shadow(4px 4px #070e1b), drop-shadow(-4px -4px #070e1b);
+    /* filter: drop-shadow(-4px -4px #070e1b); */
+    /* box-shadow: inset 3px 3px #e4e4e4; */
     
 }
 
@@ -42,9 +60,38 @@ body {
     /* padding: 1.5rem; */
     width: 12.8rem;
     height: 16.4rem;
-    border: 4px solid #040911;
+    /* filter: drop-shadow(-3px -3px #04080f); */
+    /* border: 4px solid #040911; */
+    border: 8px solid #0e192e;
     background-size: cover;
   }
+
+.school_name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+.school_name span{
+    color: rgb(144, 148, 160);
+
+    
+}
+
+.school_name .name{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow:-2px 0 #070e1b, 0 2px #070e1b, 2px 0 #070e1b, 0 -2px #070e1b;
+}
+
+.school_name .eng{
+    padding-top: 0.2rem;
+    font-size: 0.8rem;
+    text-shadow:-1px 0 #070e1b, 0 1px #070e1b, 1px 0 #070e1b, 0 -1px #070e1b;
+}
+
 
 .share_btn1 {
     display: grid;
@@ -55,11 +102,23 @@ body {
     padding-bottom: 0.5rem;
 }
 
+button {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+  }
+
 
 .restart {
-    color: rgb(144, 148, 160);
+    color: #12213a;
     font-size: 1rem;
+    font-weight: bold;
     margin: 1rem;
-    padding: 0.5rem;
-    border: 6px solid rgb(144, 148, 160);
+    margin-bottom: 1.5rem;
+    padding: 0.8rem;
+    background-color: rgb(144, 148, 160);
+    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%, 
+    calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px, 
+    100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%, 
+    8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
 }
