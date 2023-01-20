@@ -83,24 +83,31 @@ body {
 }
 
 
-.information span{
+.information .text{
     display: none;
 }
 
-.information:hover span{
-    border: 4px solid rgb(0, 0, 0);
+.information:hover .text{
+    border: 4px solid rgb(65, 65, 65);
     display: block;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(250, 250, 250);
     padding: 1rem;
     width: 20rem;
-
+    font-size: 1rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -20%);
     text-align: justify;
+    line-height: 120%;
+    letter-spacing: -1px;
     
 
+}
+
+ul {
+    padding-left: 2rem;
+    font-weight: bold;
 }
 
 .input_img {
@@ -287,7 +294,7 @@ body {
     /* border: 4px solid rgb(144, 148, 160); */
     border: none;
     background-color: rgb(255, 44, 44);
-    /* clip-path: polygon(0% 15%, 15% 15%, 15% 0%, calc(100% + -4px) 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%); */
+    
     
 }
 
