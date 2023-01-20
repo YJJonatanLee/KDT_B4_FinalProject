@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('b4/',views.test),
     path('start/',views.start_page),
     path('loading/',views.loading),
     path('color/',views.bg_color, name='color'),
@@ -30,7 +29,6 @@ urlpatterns = [
     path('share/download/<int:id>', views.file_download, name='download'),
     path('upload_photo',views.upload_photo),
     path('update/<int:id>',views.update_photo),
-    path('test/', views.test, name='test'),  
     path('create/', views.create_character),
 ]
 
