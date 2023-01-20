@@ -57,7 +57,10 @@ body {
     text-shadow: -4px 0 rgb(54, 91, 202), 0 4px rgb(54, 91, 202), 4px 0 rgb(54, 91, 202), 0 -4px rgb(54, 91, 202);
 }
 .inf_box {
+    position:absolute;
     width: 100%;
+    max-width: 30rem;
+    top: 8rem;
     display: flex;
     justify-content: right;
     padding: 1rem;
@@ -70,16 +73,6 @@ body {
     background-image: url('../img/icon/popup_icon.png');
 }
 
-/* .information{
-    background-color: rgb(255, 255, 255);
-    padding: 1rem;
-    width: 20rem;
-} */
-
-/* .information:hover{
-    cursor:help;
-    position: relative;
-} */
 
 .information span{
     display: none;
@@ -95,7 +88,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -20%);
     text-align: justify;
     
 
@@ -105,7 +98,8 @@ body {
     width: 12.8rem;
     height: 16.4rem;
     display: flex;
-    
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -189,20 +183,109 @@ body {
     background-color: rgb(255, 145, 101);
 }
 
+.photo_bnt {
+    display: grid;
+    column-gap: 3rem;
+    grid-template-columns: 9rem 9rem;
+    height: 3rem;
+    
+}
+
+.pixel {
+    position: absolute;
+    clip-path: polygon(0% 4px, 4px 4px, 4px 0%, calc(100% + -4px) 0%, calc(100% + -4px) 4px, 100% 4px, 100% calc(100% + -4px), 
+    calc(100% + -4px) calc(100% + -4px), calc(100% + -4px) 100%, 4px 100%, 4px calc(100% + -4px), 0% calc(100% + -4px));
+}
+
+.camera_box{
+    display: flex;
+}
+
+.gallery_box {
+    display: flex;
+}
+
+.camera_shadow {
+    width: 9rem;
+    height: 3rem;
+    background-color: rgb(53, 53, 53);
+    transform: translate(0, 8px);
+}
+
+
 .camera_btn {
     /* content: '재촬영'; */
+    width: 9rem;
+    height: 3rem;
     background-color: rgb(139, 139, 139);
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+}
+
+.camera_btn:active {
+    transform: translate(0, 8px);
+}
+
+
+.gallery_shadow {
+    width: 9rem;
+    height: 3rem;
+    background-color: rgb(184, 91, 55);
+    transform: translate(0, 8px);
 }
 
 .gallery_btn {
+    width: 9rem;
+    height: 3rem;
     background-color: rgb(255, 145, 101);
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+}
+
+.gallery_btn:active {
+    transform: translate(0, 8px);
+}
+
+.start_box{
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    margin-top: 1rem;
 }
 
 .start {
-    color: rgb(144, 148, 160);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: rgb(163, 20, 20);
+    /* text-shadow:1px 1px rgb(255, 113, 113), -1px -1px rgb(99, 0, 0); */
     font-size: 1rem;
-    margin: 1rem;
+    font-weight: bold;
+    width: 10rem;
+    height: 3rem;
+    /* margin: 1rem; */
     padding: 0.5rem;
-    border: 4px solid rgb(144, 148, 160);
-    background-color: white;
+    /* border: 4px solid rgb(144, 148, 160); */
+    border: none;
+    background-color: rgb(255, 44, 44);
+    /* clip-path: polygon(0% 15%, 15% 15%, 15% 0%, calc(100% + -4px) 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%); */
+    
+}
+
+.start:active {
+    transform: translate(-50%, 8px);
+}
+
+.start_shadow {
+    position: absolute;
+    left: 50%;
+    /* top: 4px; */
+    width: 10rem;
+    height: 3rem;
+    transform: translate(-50%, 8px);
+    background-color: rgb(163, 20, 20);
+    /* clip-path: polygon(0% 4px, 4px 4px, 4px 0%, calc(100% + -4px) 0%, calc(100% + -4px) 4px, 100% 4px, 100% calc(100% + -4px), 
+    calc(100% + -4px) calc(100% + -4px), calc(100% + -4px) 100%, 4px 100%, 4px calc(100% + -4px), 0% calc(100% + -4px)); */
 }
