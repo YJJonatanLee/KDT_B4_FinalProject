@@ -58,7 +58,9 @@ def bg_color(request):
     if request.method == 'POST':
         photo = Photos.objects.filter(id="1")
         color=request.POST.get('color')
-        photo.update(background_color=color)
+        print(color)
+        if color:
+            photo.update(background_color=color)
         return redirect('/share/'+str(1))
     else:
         print(123)
