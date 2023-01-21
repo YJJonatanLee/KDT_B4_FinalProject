@@ -64,8 +64,6 @@ def bg_color(request):
         return render(request,'bg_color.html')
 
 def share_page(request, id):
-    # photo = Photos.objects.all()
-    # print(photo.converte_photo)
     photo = Photos.objects.filter(id = id)
     return render(request,'share_page.html',{'photo':photo})
 
@@ -82,22 +80,22 @@ def file_download(request, id):
 
 
 
-def upload_photo(request):
-    if request.method == 'POST':
-        photo=Photos()
-        photo.origin_photo = request.FILES["origin"]
-        photo.converte_photo = request.FILES["converte"]
-        photo.background_color = request.POST["color"]
-        photo.background_photo = request.FILES["background"]
-        photo.save()
-        return redirect('/share/'+str(photo.id))
-    else:
-        return render(request, 'upload_photo.html')
+# def upload_photo(request):
+#     if request.method == 'POST':
+#         photo=Photos()
+#         photo.origin_photo = request.FILES["origin"]
+#         photo.converte_photo = request.FILES["converte"]
+#         photo.background_color = request.POST["color"]
+#         photo.background_photo = request.FILES["background"]
+#         photo.save()
+#         return redirect('/share/'+str(photo.id))
+#     else:
+#         return render(request, 'upload_photo.html')
 
-def update_photo(request, id):
-    photo = Photos.objects.filter(id = id)
-    photo.update(background_color='가')
-    return render(request,'share_page.html',{'photo':photo})
+# def update_photo(request, id):
+#     photo = Photos.objects.filter(id = id)
+#     photo.update(background_color='가')
+#     return render(request,'share_page.html',{'photo':photo})
 
 
 
@@ -114,10 +112,7 @@ def change_color(image, face_color, hair_color):
             elif px[i, j] == (76, 45, 23, 255):
                 px[i, j] = (hair_color[0]-30, hair_color[1]-30, hair_color[2]-30)
             elif px[i, j] != (0, 0, 0, 0):
-                # print(px[i, j])
                 px[i, j] = (hair_color[0]+30, hair_color[1]+30, hair_color[2]+30)
-            # elif px[i, j]!=(0, 0, 0, 0):
-            #     print(px[i, j])
 
 
 def create_character(request):
@@ -128,7 +123,6 @@ def create_character(request):
     face = Image.open(dir+char_path+'/face'+result['face_lenth']+'_0.png')
     face_shadow = Image.open(dir+char_path+'/face'+result['face_lenth']+'_1.png')
     face.paste(face_shadow,(0,0),face_shadow)
-    # face.paste(face_emotion,(0,0),face_emotion)
 
     if result['hair_style'] in ['medium', 'long','longwave', 'mediumwave']:
         back_hair = Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_2.png')

@@ -9,8 +9,7 @@
     font-family: 'DOSGothic';
     margin: 0;
     padding: 0;
-    
-    /* background-color: aqua; */
+    box-sizing : border-box;
 }
 
 
@@ -19,30 +18,85 @@ body {
     width: 100%;
     max-width: 100%;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
 .main {
-    background-color: #ded9c6;
+    background-color: #535353;
     width: 30rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+}
+
+.header1 {
+    background-color: #535353;
+    border-bottom: 2px solid #4d4d4d;
+    color: #dcdbdb;
+    width: 100%;
+    padding: 0.2rem 0.3rem;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 15rem auto;
+}
+
+.top {
+
+    margin-left: auto;
+}
+
+.top_icon {
+    height: 20px;
+    width: 80px;
+    padding: 0;
+    margin: 0;
+    object-fit: none;
+}
+
+
+.header2 {
+    background-color: #535353;
+    border-bottom: 2px solid #4d4d4d;
+    color: #dcdbdb;
+    width: 100%;
+    padding: 0.2rem 0.3rem;
+}
+.header3 {
+    background-color: #535353;
+    border-bottom: 2px solid #4d4d4d;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+}
+
+.tool_icon {
+    height: 35px;
+    width: 315px;
+    padding: 0;
+    margin: 0;
+}
+
+.layer {
+    color: #dcdbdb;
+    width: 100%;
+    padding: 0.2rem 0.3rem;
+    background: linear-gradient(90deg, #535353 16.2rem, #424242 16.2rem);
 }
 
 .title {
     color: rgb(118, 152, 255);
     font-size: 3rem;
     padding-top: 2rem;
-    /* padding-bottom: 1rem; */
 }
-/* .information {
-    height:1rem;
-    width: 1rem;
-} */
+
+
+.img_box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #282828;
+}
 img {
     padding: 1.5rem;
     width: 12.8rem;
@@ -60,6 +114,21 @@ img {
 }
 
 
+.color_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color_title{
+    background-color: #535353;
+    border-bottom: 2px solid #4d4d4d;
+    color: #dcdbdb;
+    width: 100%;
+    padding: 0.2rem 0.3rem;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -71,15 +140,17 @@ form {
 .color_btn1 {
     display: grid;
     column-gap: 1rem;
-    grid-template-columns: 2.5rem 2.5rem 2.5rem 2.5rem 2.5rem;
-    height: 2.5rem;
-    padding-bottom: 0.5rem;
+    grid-template-columns: 3em 3rem 3rem 3rem 3rem 3rem;
+    height: 3rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
 }
 .color_btn2 {
     display: grid;
     column-gap: 1rem;
-    grid-template-columns: 2.5rem 2.5rem 2.5rem 2.5rem 2.5rem;
-    height: 2.5rem;
+    grid-template-columns: 3em 3rem 3rem 3rem 3rem 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
 }
 
 .color {
@@ -87,14 +158,48 @@ form {
 }
 
 
-
-
+.next_box{
+    display: flex;
+    width: 100%;
+    height: 2.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
 
 
 .next {
-    color: rgb(144, 148, 160);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: rgb(163, 20, 20);
     font-size: 1rem;
-    margin: 1rem;
+    font-weight: bold;
+    width: 12rem;
+    height: 2.5rem;
     padding: 0.5rem;
-    border: 6px solid rgb(144, 148, 160);
+    border: none;
+    background-color: rgb(255, 44, 44);
+    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%, 
+    calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px, 
+    100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%, 
+    8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
+    
+    
+}
+
+.next:active {
+    transform: translate(-50%, 8px);
+}
+
+.next_shadow {
+    position: absolute;
+    left: 50%;
+    width: 12rem;
+    height: 2.5rem;
+    transform: translate(-50%, 8px);
+    background-color: rgb(163, 20, 20);
+    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%, 
+    calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px, 
+    100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%, 
+    8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
 }

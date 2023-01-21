@@ -7,19 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="{% static 'b4/css/start.css' %}?after">
-    <title>Document</title>
+    <link href="{% static 'b4/img/icon/favicon.ico' %}?after" rel="shortcut icon" type="image/x-icon">
+    <title>네모네모고등학교 졸업식</title>
 </head>
 <body>
     <div class="main">
       <div class="bg">
-      <!-- <div class="bg" style="display: flex;
-      height: 45rem;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      background-position: top;
-      background-size : cover;
-      background-image: url('../static/b4/img/icon/start_bg.png');"> -->
         <div class="title" style="font-weight: bold; ">네모네모 고등학교 졸업식</div>
         
         
@@ -46,30 +39,14 @@
                   </ol>
                 </ul>
                 <br>
-                <!-- 1. 얼굴이 너무 작거나 흔들려서 알아볼 수 없을 때<br>
-                2. 빛/그림자 때문에 색이 다르게 보일 때<br>
-                3. 사람의 사진이 아닐 때<br><br> -->
 
                 그리고 입력한 사진은 이 서비스 이외에는 저장되거나 사용되지 않습니다!<br>
 
                 그럼 졸업사진을 찍으러 가볼까요~?</span>
-          <!-- <div class="inf_btn"></div> -->
       </div>
     </div>
       
-      <div class="pop_up_bg" id="pop_up_bg" onclick="popup_close()">
-        <div class="pop_up">
-          <div class="pop_up_name">사진 선택</div>
-          <div class="btn_box">
-            <div class="btn camera" onclick="setChildValue('b4')">카메라</div>
-            <label class="btn gallery" for="file">
-              갤러리
-            </label>
-            <input  id="file" type="file" accept="images" style="display: none;"/>
-          </div>
-        </div>
-      </div>
-      <!-- div. -->
+      
       <div class="photo_bnt">
         <div class="camera_box">
           <div class="pixel camera_shadow"></div>
@@ -77,15 +54,15 @@
         </div>
         <div class="gallery_box">
           <div class="pixel gallery_shadow"></div>
-          <label for="file">
+          <label for="fileinput">
+            <!-- <span>갤러리</span> -->
             <div class="pixel gallery_btn">갤러리</div>
           </label>  
-          <input type="file" id="fileinput" onclick="gallery()"></button>
+          <input type="file" id="fileinput" onclick="gallery()" style="display: none;"></button>
         </div>
         
       </div>
       <div class="start_box">
-        <!-- <div class="start_shadow2"></div> -->
         <div class="pixel start_shadow"></div>
         <button class="pixel start" onclick="setChildValue('loading')">사진 촬영 하기</button>
       </div>

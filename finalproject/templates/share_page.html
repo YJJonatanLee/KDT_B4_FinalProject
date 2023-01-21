@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'b4/css/share.css' %}?after">
+    <link href="{% static 'b4/img/icon/favicon.ico' %}?after" rel="shortcut icon" type="image/x-icon">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <title>Document</title>
+    <title>네모네모고등학교 졸업식</title>
 </head>
 <body>
     <div class="main">
@@ -30,20 +31,12 @@
       <div class="share_btn1">
         {% post_to_facebook object_or_url '<img class="facebook" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/facebook.png" alt="">' %}
         {% post_to_twitter '새로운 글!' post.get_absolute_url '<img class="twitter" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/twitter.png" alt="">' %}
-        <!-- <div class="share i3">{% send_email object.title "New Song: . Check it out!" object_or_url "Share via email" %}</div> -->
 
         {% for p in photo.all %}
           <a href="{% url 'download' p.id %}" download="네모네모.png"><img class="save" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/save.png" alt=""></a>
         {% endfor %}  
         {% copy_to_clipboard object_or_url '<img class="link" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/link.png" alt="">'%}
         {% add_copy_script %}
-          <!-- <style>
-            button {
-              background-color: transparent;
-              padding: 0;
-              border: none;
-            }
-            </style> -->
       </div>
       <div class="restart" onclick="go2next()">졸업사진 찍으러 가기</div>
     </div>

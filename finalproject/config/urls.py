@@ -27,8 +27,8 @@ urlpatterns = [
     path('color/',views.bg_color, name='color'),
     path('share/<int:id>',views.share_page),
     path('share/download/<int:id>', views.file_download, name='download'),
-    path('upload_photo',views.upload_photo),
-    path('update/<int:id>',views.update_photo),
+    # path('upload_photo',views.upload_photo),
+    # path('update/<int:id>',views.update_photo),
     path('create/', views.create_character),
 ]
 
