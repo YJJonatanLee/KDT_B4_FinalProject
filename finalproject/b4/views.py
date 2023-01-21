@@ -1,8 +1,4 @@
-import base64
-import io
 import cv2
-from django import apps
-import numpy as np
 import os
 from django.shortcuts import get_object_or_404
 import urllib
@@ -36,18 +32,19 @@ from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
 
-
 @csrf_exempt
-#text function 삭제x
-def test(request):
+def start_page(request):
     if request.method == 'POST':
         image = request.FILES.get('camera-image')
         CameraImage.objects.create(image=image)
-    images = CameraImage.objects.all()
-    context = {
-        'images': images
-    }
-    return render(request, 'camera_view.html', context)
+        images = CameraImage.objects.all()
+
+        #임시 작성 코드
+        for i in images:
+            img=Image.open(i.image)
+            img.save('media/origin_img/img.png','PNG')
+   
+    return render(request,'start_page.html')
 
 
 def loading(request):
@@ -83,19 +80,7 @@ def file_download(request, id):
     response['Content-Disposition'] = 'attachment; filename=네모네모.png'
     return response
 
-@csrf_exempt
-def start_page(request):
-    if request.method == 'POST':
-        image = request.FILES.get('camera-image')
-        CameraImage.objects.create(image=image)
-        images = CameraImage.objects.all()
 
-        #임시 작성 코드
-        for i in images:
-            img=Image.open(i.image)
-            img.save('media/origin_img/img.png','PNG')
-        
-    return render(request,'start_page.html')
 
 def upload_photo(request):
     if request.method == 'POST':

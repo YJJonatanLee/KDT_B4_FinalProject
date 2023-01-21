@@ -77,7 +77,10 @@
         </div>
         <div class="gallery_box">
           <div class="pixel gallery_shadow"></div>
-          <button class="pixel gallery_btn" onclick="gallery()">갤러리</button>
+          <label for="file">
+            <div class="pixel gallery_btn">갤러리</div>
+          </label>  
+          <input type="file" id="fileinput" onclick="gallery()"></button>
         </div>
         
       </div>
@@ -85,10 +88,8 @@
         <!-- <div class="start_shadow2"></div> -->
         <div class="pixel start_shadow"></div>
         <button class="pixel start" onclick="setChildValue('loading')">사진 촬영 하기</button>
-        
       </div>
-      
-    
+
   </div>
   </div>
 </body>
