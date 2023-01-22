@@ -97,7 +97,44 @@ def file_download(request, id):
 #     photo.update(background_color='가')
 #     return render(request,'share_page.html',{'photo':photo})
 
+import os
+import sys
+import requests
+import json
 
+
+def face_recognition():
+    client_id = ""
+    client_secret = ""
+    url = "https://openapi.naver.com/v1/vision/face" 
+    files = {'image': open('media/background/t.jpg', 'rb')}
+    headers = {'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret }
+    response = requests.post(url,  files=files, headers=headers)
+    rescode = response.status_code
+    if(rescode==200):
+        face_lenth = '0'
+        emotion = '0'
+        json_object = json.loads(response.text)
+        if json_object['info']['faceCount'] !=0:
+            face_ratio = json_object['info']['size']['height']/json_object['info']['size']['width']
+            if face_ratio > 1.3 and face_ratio <= 1.5:
+                face_lenth = '1'
+            elif face_ratio > 1.5:
+                face_lenth = '2'
+            emotion_r = json_object['faces'][0]['emotion']['value']
+            if emotion_r in ['angry', 'disgust']:
+                emotion = '2'
+            elif emotion_r in ['fear', 'sad']:
+                emotion = '3'
+            elif emotion_r == 'surprise':
+                emotion = '1'
+            elif emotion_r == 'smile':
+                emotion = '4'
+            print (face_ratio, emotion_r)
+            return face_lenth, emotion
+    else:
+        print("Error Code:" + rescode)
+    return face_lenth, emotion
 
 def change_color(image, face_color, hair_color):
     px = image.load()
@@ -116,7 +153,9 @@ def change_color(image, face_color, hair_color):
 
 
 def create_character(request):
-    result = {'face_lenth':'0', 'hair_style':'short', 'front_hair_style':'short','face_color':[(255, 243, 219) ,((255, 232, 190))], "hair_color":(186,212,237), 'eye':'o','emotion':'3'}
+    face_lenth, emotion = '0', '0'
+    # face_lenth, emotion = face_recognition() 
+    result = {'face_lenth':face_lenth, 'hair_style':'short', 'front_hair_style':'short','face_color':[(255, 243, 219) ,((255, 232, 190))], "hair_color":(186,212,237), 'eye':'o','emotion':emotion}
     dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/img/character/'
     char_path ='face'+result['face_lenth']
 
