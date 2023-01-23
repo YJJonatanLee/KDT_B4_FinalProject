@@ -35,16 +35,21 @@ function setChildValue(index1) {
         alert("사진을 선택해주세요.");
     }
     else{
-        canvas.toBlob(blob => {
-            const formData = new FormData();
-            formData.append('camera-image', blob);
-            fetch('/start/', {
-                method: 'POST',
-                body: formData
-              });
-            });
+        var imageSrc = document.getElementById('image').src;
+        var binary = atob(imageSrc.split(',')[1]);
+        var array = [];
+        for (var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+
+        const formData = new FormData();
+        formData.append('camera-image', new Blob([new Uint8Array(array)], { type: 'image/png' }));
+        fetch('/start/', {
+            method: 'POST',
+            body: formData
+        });
         window.location.href = `/${index1}`;
-    }
+    } 
     // window.location.href = `indexcopy.html?${index1}?${index2}`;
 }
 

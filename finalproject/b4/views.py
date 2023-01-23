@@ -1,6 +1,5 @@
 import cv2
 import os
-from django.shortcuts import get_object_or_404
 import urllib
 
 
@@ -26,7 +25,7 @@ saving_dir = 'media/cutting_faces/'
 files, file_names = make_file_list(path_dir)
 
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
@@ -98,7 +97,6 @@ def file_download(request, id):
 #     return render(request,'share_page.html',{'photo':photo})
 
 import os
-import sys
 import requests
 import json
 
