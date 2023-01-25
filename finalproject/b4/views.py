@@ -30,6 +30,10 @@ from django.http import HttpResponse
 from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
+from django.conf import settings
+
+
+
 import time
 
 @csrf_exempt
@@ -113,8 +117,10 @@ import json
 
 
 def face_recognition():
-    client_id = ""
-    client_secret = ""
+    client_id = settings.NAVER_API
+    client_secret = settings.NAVER_SECRET
+    # client_id = ""
+    # client_secret = ""
     url = "https://openapi.naver.com/v1/vision/face" 
     files = {'image': open('media/background/t.jpg', 'rb')}
     headers = {'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret }
