@@ -17,8 +17,8 @@
         
         
         
-      <div class="input_img" onclick="popup_open()">
-        <video class="video" id="video" onclick="popup_open()" autoplay></video>
+      <div class="input_img">
+        <video class="video" id="video" autoplay></video>
         <div class="guideline"></div>
         <img id="image"></img>
       </div>
@@ -63,11 +63,20 @@
       </div>
       <div class="start_box">
         <div class="pixel start_shadow"></div>
-        <button class="pixel start" onclick="setChildValue('loading')">사진 촬영 하기</button>
+        <input type="button" id="btn" class="pixel start" onclick="setChildValue('loading')" value="사진 촬영 하기">
       </div>
 
-  </div>
-  </div>
+      </div>
+    </div>
+
+    <div class="main2 display-none" id="main2">
+      <div class="camera_img"></div>
+      <div class="str"><h5 class="text"></h5></div>
+      <div class="progress-wrap">
+          <div class="progress-bar"></div>
+      </div>
+    </div>
+
 </body>
 <script src="{% static 'b4/js/start.js' %}?after"></script>
 </html>

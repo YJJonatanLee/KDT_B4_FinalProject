@@ -30,6 +30,7 @@ from django.http import HttpResponse
 from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
+import time
 
 @csrf_exempt
 def start_page(request):
@@ -37,16 +38,27 @@ def start_page(request):
         image = request.FILES.get('camera-image')
         CameraImage.objects.create(image=image)
         images = CameraImage.objects.all()
+        time.sleep(10)
 
+        a=1
+        b=2
+        print(a+b)
         #임시 작성 코드
         for i in images:
             img=Image.open(i.image)
             img.save('media/origin_img/img.png','PNG')
+        return render(request,'bg_color.html')
    
     return render(request,'start_page.html')
 
 
+
 def loading(request):
+    # Cutting_face_save(cv2.imread(os.path.join(path_dir, files[0])), file_names[0], saving_dir)
+    # time.sleep(10)
+    return render(request,'loading.html')
+
+def loading1(request):
     Cutting_face_save(cv2.imread(os.path.join(path_dir, files[0])), file_names[0], saving_dir)
     return render(request,'loading.html')
 
@@ -59,7 +71,6 @@ def bg_color(request):
             photo.update(background_color=color)
         return redirect('/share/'+str(1))
     else:
-        print(123)
         return render(request,'bg_color.html')
 
 def share_page(request, id):

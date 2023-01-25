@@ -32,6 +32,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    
     /* background-image: url('../img/icon/start_bg.png'); */
     /* justify-content: center; */
 }
@@ -277,4 +278,77 @@ img{
     height: 2.5rem;
     transform: translate(-50%, 8px);
     background-color: rgb(163, 20, 20);
+}
+
+
+.main2 {
+    background-color: #ded9c6;
+    width: 100%;
+    max-width: 30rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    /* display:none; */
+
+}
+
+.display-none{ /*감추기*/
+
+    display:none;
+
+}
+
+.camera_img {
+    width: 8em;
+    height: 6rem;
+    background-size : cover;
+    background-image: url('../img/icon/camera.png')
+}
+
+.str {
+    width: 800px;
+    padding: 20px;
+    height: 5rem;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 2.2rem;
+    margin-left: .6rem;
+}
+
+
+
+.progress-wrap {
+    width: 100%;
+    height: 3rem;
+    padding: 0.5rem;
+    background: rgb(255, 255, 255);
+
+}
+
+.progress-bar  {
+    width: 100%;
+    height: 100%;
+    
+    background: rgb(80, 120, 241);
+    overflow: hidden;
+    /* position: relative; */
+    animation: loading 15s linear;
+}
+
+ 
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
 }
