@@ -1,82 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="{% static 'b4/css/start.css' %}?after">
-    <link href="{% static 'b4/img/icon/favicon.ico' %}?after" rel="shortcut icon" type="image/x-icon">
-    <title>네모네모고등학교 졸업식</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{% static 'b4/css/start.css' %}?after">
+  <link href="{% static 'b4/img/icon/favicon.ico' %}?after" rel="shortcut icon" type="image/x-icon">
+  <title>네모네모고등학교 졸업식</title>
 </head>
+
 <body>
-    <div class="main">
-      <div class="bg">
-        <div class="title" style="font-weight: bold; ">네모네모 고등학교 졸업식</div>
-        
-        
-        
+  <!-- 시작 화면 -->
+  <div class="main">
+    <div class="bg">
+      <div class="title" style="font-weight: bold; ">네모네모 고등학교 졸업식</div>
+
       <div class="input_img">
         <video class="video" id="video" autoplay></video>
         <div class="guideline"></div>
         <img id="image"></img>
       </div>
 
+      <!-- information 팝업 -->
       <div class="inf_box">
         <div class="information">
-        <span class="text"> <span style="background-color: rgb(255, 232, 127); color: rgb(75, 61, 0); font-size: 1.2rem; font-weight: bold;">네모네모 고등학교 졸업식</span>
-        은 사진을 넣으면 교복을 입은 도트 캐릭터로 바꿔준답니다!<br>
+          <span class="text"> <span
+              style="background-color: rgb(255, 232, 127); color: rgb(75, 61, 0); font-size: 1.2rem; font-weight: bold;">네모네모
+              고등학교 졸업식</span>
+            은 사진을 넣으면 교복을 입은 도트 캐릭터로 바꿔준답니다!<br>
 
-                하지만 다음과 같은 경우에는 결과가 많이 다를 수 있어요! 가능하면 얼굴과 머리가 잘 보이는 정면 사진을 넣어주세요!<br><br>
+            하지만 다음과 같은 경우에는 결과가 많이 다를 수 있어요! 가능하면 얼굴과 머리가 잘 보이는 정면 사진을 넣어주세요!<br><br>
 
-                <ul>
-                  <ol type="1" start="1">
-                  <li>얼굴이 너무 작거나 흔들려서 알아볼 수 없을 때</li>
-                  <li>빛/그림자 때문에 색이 다르게 보일 때</li>
-                  <li>사람의 사진이 아닐 때</li>
-                  </ol>
-                </ul>
-                <br>
+            <ul>
+              <ol type="1" start="1">
+                <li>얼굴이 너무 작거나 흔들려서 알아볼 수 없을 때</li>
+                <li>빛/그림자 때문에 색이 다르게 보일 때</li>
+                <li>배경과 얼굴이 잘 구분되지 않을 때</li>
+                <li>머리모양이 다 보이지 않을 때</li>
+                <li>사람의 사진이 아닐 때</li>
+              </ol>
+            </ul>
+            <br>
 
-                그리고 입력한 사진은 이 서비스 이외에는 저장되거나 사용되지 않습니다!<br>
+            그리고 입력한 사진은 이 서비스 이외에는 사용되지 않습니다!<br>
 
-                그럼 졸업사진을 찍으러 가볼까요~?</span>
+            그럼 졸업사진을 찍으러 가볼까요~?
+          </span>
+        </div>
       </div>
-    </div>
-      
-      
+
       <div class="photo_bnt">
+        <!-- 카메라 버튼 -->
         <div class="camera_box">
           <div class="pixel camera_shadow"></div>
           <button class="pixel camera_btn" onclick="camera()">촬영</button>
         </div>
+        <!-- 갤러리 버튼 -->
         <div class="gallery_box">
           <div class="pixel gallery_shadow"></div>
           <label for="fileinput">
-            <!-- <span>갤러리</span> -->
             <div class="pixel gallery_btn">갤러리</div>
-          </label>  
+          </label>
           <input type="file" id="fileinput" onclick="gallery()" style="display: none;"></button>
         </div>
-        
+
       </div>
+      <!-- 로딩 화면 실행 -->
       <div class="start_box">
         <div class="pixel start_shadow"></div>
         <input type="button" id="btn" class="pixel start" onclick="setChildValue('loading')" value="사진 촬영 하기">
       </div>
 
-      </div>
     </div>
+  </div>
 
-    <div class="main2 display-none" id="main2">
-      <div class="camera_img"></div>
-      <div class="str"><h5 class="text"></h5></div>
-      <div class="progress-wrap">
-          <div class="progress-bar"></div>
-      </div>
+
+
+
+  <!-- 로딩 화면 -->
+  <div class="main2 display-none" id="main2">
+    <div class="camera_img"></div>
+    <!-- 텍스트 애니메이션 -->
+    <div class="str"></div>
+    <!-- 로딩바 -->
+    <div class="progress-wrap">
+      <div class="progress-bar"></div>
     </div>
+  </div>
 
 </body>
 <script src="{% static 'b4/js/start.js' %}?after"></script>
+
 </html>

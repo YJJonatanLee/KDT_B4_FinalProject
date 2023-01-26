@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'b4/css/share.css' %}?after">
-    <link href="{% static 'b4/img/icon/favicon.ico' %}?after" rel="shortcut icon" type="image/x-icon">
-    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <title>네모네모고등학교 졸업식</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'b4/css/share.css' %}?after">
+  <link href="{% static 'b4/img/icon/favicon.ico' %}?after" rel="shortcut icon" type="image/x-icon">
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <title>네모네모고등학교 졸업식</title>
 </head>
+
 <body>
-    <div class="main">
-      <div class="title_wrap">
-        <img class="title" src="../static/b4/img/icon/title_share.png" alt="">
-      </div>
-
-      <div class="line1"></div>
-      
-      {% for p in photo.all %}
-        <img class="result_photo" src={{ p.converte_photo.url }}>
-      {% endfor %}  
-
-      <div class="school_name">
-        <span class="name">네모네모고등학교</span>
-        <span class="eng">NEMONEMO HIGH SCHOOL</span>
-      </div>
-
-      {% load social_share %}
-      <div class="share_btn1">
-        {% post_to_facebook object_or_url '<img class="facebook" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/facebook.png" alt="">' %}
-        {% post_to_twitter '새로운 글!' post.get_absolute_url '<img class="twitter" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/twitter.png" alt="">' %}
-
-        {% for p in photo.all %}
-          <a href="{% url 'download' p.id %}" download="네모네모.png"><img class="save" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/save.png" alt=""></a>
-        {% endfor %}  
-        {% copy_to_clipboard object_or_url '<img class="link" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/link.png" alt="">'%}
-        {% add_copy_script %}
-      </div>
-      <div class="restart" onclick="go2next()">졸업사진 찍으러 가기</div>
+  <div class="main">
+    <!-- header -->
+    <div class="title_wrap">
+      <img class="title" src="../static/b4/img/icon/title_share.png" alt="">
     </div>
-    
+
+    <div class="line1"></div>
+
+    <!-- 결과 이미지 출력 -->
+    {% for p in photo.all %}
+    <img class="result_photo" src={{ p.converte_photo.url }}>
+    {% endfor %}
+
+    <div class="school_name">
+      <span class="name">네모네모고등학교</span>
+      <span class="eng">NEMONEMO HIGH SCHOOL</span>
+    </div>
+
+    <!-- 공유하기 -->
+    {% load social_share %}
+    <div class="share_btn1">
+      <!-- facebook -->
+      {% post_to_facebook object_or_url '<img class="facebook" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/facebook.png" alt="">' %}
+      <!-- twitter -->
+      {% post_to_twitter '새로운 글!' post.get_absolute_url '<img class="twitter" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/twitter.png" alt="">' %}
+      <!-- 이미지 저장 -->
+      {% for p in photo.all %}
+      <a href="{% url 'download' p.id %}" download="네모네모.png"><img class="save" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/save.png" alt=""></a>
+      {% endfor %}
+      <!-- 링크 복사 -->
+      {% copy_to_clipboard object_or_url '<img class="link" style="width: 2.5rem; height: 2.5rem; object-fit: cover;" src="../static/b4/img/icon/link.png" alt="">'%}
+      {% add_copy_script %}
+    </div>
+    <!-- 처음 페이지로 이동 -->
+    <div class="restart" onclick="go2next()">졸업사진 찍으러 가기</div>
+  </div>
+
 </body>
 
 <script src="{% static 'b4/js/share.js' %}?after"></script>
+
 </html>
