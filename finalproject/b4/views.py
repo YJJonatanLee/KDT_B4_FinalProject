@@ -122,7 +122,6 @@ import json
 import numpy as np
 
 def color_picker(img_path, x, y):
-    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/')
     image = Image.open(img_path)
     px = image.load()
     a = [-3, -2, -1, 0, 1, 2, 3]
@@ -138,6 +137,7 @@ def color_picker(img_path, x, y):
                     R+=px[xx, yy][0]
                     G+=px[xx, yy][1]
                     B+=px[xx, yy][2]
+    if n==0: n=1
     return (R//n+1, G//n+1, B//n+1)
 
 def face_color_picker(rgb):
