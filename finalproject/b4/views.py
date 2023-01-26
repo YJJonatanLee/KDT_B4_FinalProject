@@ -190,11 +190,11 @@ def face_recognition(img_path):
     headers = {'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret }
     response = requests.post(url,  files=files, headers=headers)
     rescode = response.status_code
+    face_lenth = '0'
+    emotion = '0'
+    hair_color = (0,0,0)
+    face_color = [(255, 243, 219) ,((255, 232, 190))]
     if(rescode==200):
-        face_lenth = '0'
-        emotion = '0'
-        hair_color = (0,0,0)
-        face_color = [(255, 243, 219) ,((255, 232, 190))]
         json_object = json.loads(response.text)
         if json_object['info']['faceCount'] !=0:
             face_ratio = json_object['faces'][0]['roi']['height']/json_object['faces'][0]['roi']['width']
@@ -227,7 +227,7 @@ def face_recognition(img_path):
             # print(x1,y1,x,y, hair_color)
             return face_lenth, emotion, hair_color, face_color
     else:
-        print("Error Code:" + rescode)
+        print("Error Code:" + str(rescode))
     return face_lenth, emotion, hair_color, face_color
 
 
