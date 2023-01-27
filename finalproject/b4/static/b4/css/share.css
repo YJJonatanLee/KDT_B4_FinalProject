@@ -13,12 +13,13 @@
 
 
 body {
-    height:100%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .main {
     background-color: #12213a;
     width: 100%;
@@ -28,20 +29,20 @@ body {
     flex-direction: column;
     align-items: center;
     border: 8px solid #0e192e;
-    position:relative;
+    position: relative;
 }
 
-.line1{
+.line1 {
     background-color: #070e1b;
     position: absolute;
     width: 6px;
-    height: 100% ;
+    height: 100%;
     transform: translate(-11.5rem, 0);
     border-left: 4px solid #0e192e;
     border-right: 2px solid #0e192e;
 }
 
-.title_wrap{
+.title_wrap {
     padding-top: 1.2rem;
     padding-bottom: 1rem;
     filter: drop-shadow(4px 4px #070e1b), drop-shadow(-4px -4px #070e1b);
@@ -52,7 +53,7 @@ body {
     height: 16.4rem;
     border: 4px solid #0e192e;
     background-size: cover;
-  }
+}
 
 .school_name {
     display: flex;
@@ -62,29 +63,27 @@ body {
     padding-bottom: 2rem;
 }
 
-.school_name span{
+.school_name span {
     color: rgb(144, 148, 160);
-
-    
 }
 
-.school_name .name{
+.school_name .name {
     font-size: 1.5rem;
     font-weight: bold;
-    text-shadow:-2px 0 #070e1b, 0 2px #070e1b, 2px 0 #070e1b, 0 -2px #070e1b;
+    text-shadow: -2px 0 #070e1b, 0 2px #070e1b, 2px 0 #070e1b, 0 -2px #070e1b;
 }
 
-.school_name .eng{
+.school_name .eng {
     padding-top: 0.2rem;
     font-size: 0.8rem;
-    text-shadow:-1px 0 #070e1b, 0 1px #070e1b, 1px 0 #070e1b, 0 -1px #070e1b;
+    text-shadow: -1px 0 #070e1b, 0 1px #070e1b, 1px 0 #070e1b, 0 -1px #070e1b;
 }
 
 
 .share_btn1 {
     display: grid;
     column-gap: 1rem;
-    grid-template-columns: 2.5rem 2.5rem 2.5rem 2.5rem ;
+    grid-template-columns: 2.5rem 2.5rem 2.5rem 2.5rem;
     height: 2.5rem;
     padding-top: 1rem;
     padding-bottom: 0.5rem;
@@ -94,7 +93,7 @@ button {
     background-color: transparent;
     padding: 0;
     border: none;
-  }
+}
 
 
 .restart {
@@ -105,8 +104,8 @@ button {
     margin-bottom: 1.5rem;
     padding: 0.8rem;
     background-color: rgb(144, 148, 160);
-    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%, 
-    calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px, 
-    100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%, 
-    8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
+    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%,
+            calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px,
+            100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%,
+            8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
 }

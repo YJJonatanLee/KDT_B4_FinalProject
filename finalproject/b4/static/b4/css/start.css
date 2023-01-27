@@ -9,32 +9,24 @@
     font-family: 'DOSGothic';
     margin: 0;
     padding: 0;
-    
-    /* background-color: aqua; */
 }
-/* html {
-     height:100%; 
-} */
+
 
 body {
-    height:100%;
+    height: 100%;
     width: 100%;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
+
 .main {
-    /* background-color: rgb(224, 201, 156); */
     max-width: 30rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    
-    /* background-image: url('../img/icon/start_bg.png'); */
-    /* justify-content: center; */
 }
 
 .bg {
@@ -44,7 +36,7 @@ body {
     align-items: center;
     text-align: center;
     background-position: top;
-    background-size : cover;
+    background-size: cover;
     background-image: url('../img/icon/start_bg.png')
 }
 
@@ -52,15 +44,13 @@ body {
     background-color: rgba(255, 255, 255, 0.55);
     color: rgb(80, 120, 241);
     font-size: 3rem;
-    
     padding: 1.5rem;
-    /* padding-top: 3rem; */
     font-weight: bold;
     text-shadow: -4px 0 rgb(54, 91, 202), 0 4px rgb(54, 91, 202), 4px 0 rgb(54, 91, 202), 0 -4px rgb(54, 91, 202);
 }
 
 .inf_box {
-    position:absolute;
+    position: absolute;
     width: 100%;
     max-width: 30rem;
     top: 9rem;
@@ -70,25 +60,25 @@ body {
 }
 
 .information {
-    height:2rem;
+    height: 2rem;
     width: 2rem;
     margin-right: 1rem;
     background-image: url('../img/icon/popup_icon1.png');
 }
 
 .information:hover {
-    height:2rem;
+    height: 2rem;
     width: 2rem;
     margin-right: 1rem;
     background-image: url('../img/icon/popup_icon.png');
 }
 
 
-.information .text{
+.information .text {
     display: none;
 }
 
-.information:hover .text{
+.information:hover .text {
     border: 4px solid rgb(65, 65, 65);
     display: block;
     background-color: rgb(250, 250, 250);
@@ -102,8 +92,6 @@ body {
     text-align: justify;
     line-height: 120%;
     letter-spacing: -1px;
-    
-
 }
 
 ul {
@@ -121,54 +109,26 @@ ul {
 
 
 .video {
-    /* margin: 1.5rem; */
     width: 12.8rem;
     height: 16.4rem;
     object-fit: cover;
-    position:absolute;  
-    /* background-size: cover; */
+    position: absolute;
 }
 
 .guideline {
     width: 12.8rem;
     height: 16.4rem;
-    position:absolute;  
-    background-size : cover;
+    position: absolute;
+    background-size: cover;
     background-image: url('../img/icon/guideline.png')
 }
 
-img{
+img {
     width: 12.8rem;
     height: 16.4rem;
-    position:absolute;  
+    position: absolute;
 }
 
-
-
-
-/* .share_btn1 {
-    display: grid;
-    column-gap: 1rem;
-    grid-template-columns: 2.5rem 2.5rem 2.5rem;
-    height: 2.5rem;
-    padding-bottom: 0.5rem;
-} */
-
-.pop_up_bg {
-    background-color:rgba(0,0,0,.3);
-    position:fixed;         
-    top:0;
-    left:50%;
-    transform: translate(-50%, 0%);
-    /* right:50%; */
-    bottom:0;               
-    display:none;
-    justify-content:center; 
-    /* vertical-align: bottom; */
-    align-items:flex-end;
-    width: 100%;
-    max-width: 30rem;
-}
 
 
 .photo_bnt {
@@ -177,18 +137,18 @@ img{
     column-gap: 3rem;
     grid-template-columns: 6rem 6rem;
     height: 2.5rem;
-    
+
 }
 
 .pixel {
     position: absolute;
-    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%, 
-    calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px, 
-    100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%, 
-    8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
+    clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%,
+            calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px,
+            100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%,
+            8px 100%, 8px calc(100% + -4px), 4px calc(100% + -4px), 4px calc(100% + -8px), 0% calc(100% + -8px));
 }
 
-.camera_box{
+.camera_box {
     display: flex;
 }
 
@@ -244,7 +204,7 @@ img{
     transform: translate(0, 8px);
 }
 
-.start_box{
+.start_box {
     display: flex;
     width: 100%;
     height: 2.5rem;
@@ -263,8 +223,8 @@ img{
     padding: 0.5rem;
     border: none;
     background-color: rgb(255, 44, 44);
-    
-    
+
+
 }
 
 .start:active {
@@ -292,20 +252,17 @@ img{
     align-items: center;
     text-align: center;
     padding: 1rem;
-    /* display:none; */
-
 }
 
-.display-none{ /*감추기*/
-
-    display:none;
-
+.display-none {
+    /*감추기*/
+    display: none;
 }
 
 .camera_img {
     width: 8em;
     height: 6rem;
-    background-size : cover;
+    background-size: cover;
     background-image: url('../img/icon/camera.png')
 }
 
@@ -333,21 +290,21 @@ h5 {
 
 }
 
-.progress-bar  {
+.progress-bar {
     width: 100%;
     height: 100%;
-    
+
     background: rgb(80, 120, 241);
     overflow: hidden;
-    /* position: relative; */
     animation: loading 15s linear;
 }
 
- 
+
 @keyframes loading {
     0% {
         width: 0%;
     }
+
     100% {
         width: 100%;
     }
