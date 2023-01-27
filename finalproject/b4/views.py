@@ -31,22 +31,32 @@ from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
 from django.conf import settings
-
-
-
+from django.core.files import File
 import time
+
+def save_photo(image):
+    photo = Photos()
+    photo.origin_photo = image
+    photo.save()
+    return photo.id
+
+def get_photo(photo_id):
+    photo = Photos.objects.get(id=photo_id)
+    return photo.origin_photo
+
+def save_photo_media(photo_id, path):
+    photo = Photos.objects.get(id=photo_id)
+    photo_file = File(photo.origin_photo.file)
+    with open(path, 'wb') as f:
+        for chunk in photo_file.chunks():
+            f.write(chunk)
 
 @csrf_exempt
 def start_page(request):
     if request.method == 'POST':
         image = request.FILES.get('camera-image')
-        CameraImage.objects.create(image=image)
-        images = CameraImage.objects.all()
-        # 임시 작성 코드
-        for i in images:
-            img=Image.open(i.image)
-            img.save('media/origin_img/img.png','PNG')
-
+        save_photo_media(save_photo(image),'media/origin_img/img.png')
+        
         # img_path = 'media/background/t.jpg'
         
         result = {'face_lenth':'0', 'hair_style':'short', 'front_hair_style':'short',
@@ -63,7 +73,6 @@ def start_page(request):
         return render(request,'bg_color.html')
    
     return render(request,'start_page.html')
-
 
 
 def loading(request):
