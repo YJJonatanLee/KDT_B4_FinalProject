@@ -185,12 +185,14 @@ def change_color(image: Image, face_color: list, hair_color: tuple) -> None:
 
 
 def create_character(result: dict) -> None:
+
     """ 나온 결과들을 바탕으로 캐릭터 이미지를 생성하는 함수
 
     Args:
         result (dict): 나온 결과들({'face_lenth': 얼굴 비율, 'hair_style':머리 스타일, 'front_hair_style':앞머리 모양,
                   'face_color':피부색, "hair_color":머리색, 'eye':안경 유무,'emotion': 표정})
     """
+    
     dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/img/character/'
     char_path ='face'+result['face_lenth']
 
