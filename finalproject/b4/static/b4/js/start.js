@@ -6,8 +6,18 @@ const image = document.getElementById('image');
 const camera_btn = document.querySelector(".camera_btn");
 const gallery_btn = document.querySelector(".gallery_btn");
 const guideline = document.querySelector(".guideline");
+var gallery_check=false;
+
 
 document.getElementById('fileinput').addEventListener('change', function (evt) {
+    if(evt.target.value == "") {
+        alert("취소");
+        gallery_check=false;
+    }
+    else{
+        gallery_check=true;
+    }
+
     var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
     if (FileReader && files && files.length) {
@@ -17,6 +27,7 @@ document.getElementById('fileinput').addEventListener('change', function (evt) {
         }
         fr.readAsDataURL(files[0]);
     }
+
 });
 
 navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
@@ -26,8 +37,9 @@ navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
 
 // 로딩창 실행 및 다음 페이지로 이동 함수
 function setChildValue(index1) {
+ 
     //메시지는 임의로 설정했습니다.
-    if (camera_btn.innerText === '촬영') {
+    if (camera_btn.innerText === '촬영'||gallery_check==false) {
         alert("사진을 선택해주세요.");
     }
     else {
@@ -35,10 +47,8 @@ function setChildValue(index1) {
         document.querySelector('.main').classList.add('display-none');
         document.querySelector('.main2').classList.remove('display-none');
         setTimeout(typing, 1500);
-
-
-        var imageSrc = document.getElementById('image').src;
-        var binary = atob(imageSrc.split(',')[1]);
+        
+        var binary = atob(image.split(',')[1]);
         var array = [];
         for (var i = 0; i < binary.length; i++) {
             array.push(binary.charCodeAt(i));
@@ -51,7 +61,7 @@ function setChildValue(index1) {
             body: formData
         });
 
-        // 15초 후 페이지 이동
+        // 15초 후 페이지 이동  
         setTimeout(function () {
             window.location.href = `/${index1}`;
         }, 15000);
