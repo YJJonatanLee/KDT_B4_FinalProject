@@ -48,7 +48,8 @@ function setChildValue(index1) {
         document.querySelector('.main2').classList.remove('display-none');
         setTimeout(typing, 1500);
         
-        var binary = atob(image.split(',')[1]);
+        var imageSrc = document.getElementById('image').src;
+        var binary = atob(imageSrc.split(',')[1]);
         var array = [];
         for (var i = 0; i < binary.length; i++) {
             array.push(binary.charCodeAt(i));
@@ -72,6 +73,7 @@ function setChildValue(index1) {
 
 function camera() {
     if (camera_btn.innerText === '촬영') {
+        gallery_check=true;
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0);
