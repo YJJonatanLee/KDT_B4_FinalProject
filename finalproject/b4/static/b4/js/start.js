@@ -7,15 +7,16 @@ const camera_btn = document.querySelector(".camera_btn");
 const gallery_btn = document.querySelector(".gallery_btn");
 const guideline = document.querySelector(".guideline");
 var gallery_check=false;
-
+let count = 0;
 
 document.getElementById('fileinput').addEventListener('change', function (evt) {
-    if(evt.target.value == "") {
+    if(evt.target.value == "" && count===0) {
         alert("취소");
         gallery_check=false;
     }
     else{
         gallery_check=true;
+        count++;
     }
 
     var tgt = evt.target || window.event.srcElement,
@@ -84,6 +85,7 @@ function camera() {
         video.style.direction = 'none';
 
         image.style.display = "block";
+        count++;
 
 
     } else if (camera_btn.innerText === '재촬영' || camera_btn.innerText === '카메라') {
