@@ -8,6 +8,53 @@ const gallery_btn = document.querySelector(".gallery_btn");
 const guideline = document.querySelector(".guideline");
 var gallery_check=false;
 let count = 0;
+// 로딩창 텍스트 애니메이션
+
+const text = document.querySelector(".str");
+
+// 글자 모음
+const letters = ["촬영 시작합니다.", "앞에 봐주세요~", "얼굴 살짝만 왼쪽으로", "한 번 더 찍을게요."];
+
+// 글자 입력 속도
+const speed = 200;
+let i = 0;
+
+// 타이핑 효과
+const typing = async () => {
+    const letter = letters[i].split("");
+
+    while (letter.length) {
+        await wait(speed);
+        text.innerHTML += letter.shift();
+    }
+
+    // 잠시 대기
+    await wait(800);
+
+    // 지우는 효과
+    remove();
+}
+
+// 글자 지우는 효과
+const remove = async () => {
+    const letter = letters[i].split("");
+
+    while (letter.length) {
+        await wait(speed);
+
+        letter.pop();
+        text.innerHTML = letter.join("");
+    }
+
+    // 다음 순서의 글자로 지정, 타이핑 함수 다시 실행
+    i = !letters[i + 1] ? 0 : i + 1;
+    typing();
+}
+
+// 딜레이 기능 ( 마이크로초 )
+function wait(ms) {
+    return new Promise(res => setTimeout(res, ms))
+}
 
 document.getElementById('fileinput').addEventListener('change', function (evt) {
     if(evt.target.value == "" && count===0) {
@@ -107,50 +154,3 @@ function gallery() {
 
 
 
-// 로딩창 텍스트 애니메이션
-
-const text = document.querySelector(".str");
-
-// 글자 모음
-const letters = ["촬영 시작합니다.", "앞에 봐주세요~", "얼굴 살짝만 왼쪽으로", "한 번 더 찍을게요."];
-
-// 글자 입력 속도
-const speed = 200;
-let i = 0;
-
-// 타이핑 효과
-const typing = async () => {
-    const letter = letters[i].split("");
-
-    while (letter.length) {
-        await wait(speed);
-        text.innerHTML += letter.shift();
-    }
-
-    // 잠시 대기
-    await wait(800);
-
-    // 지우는 효과
-    remove();
-}
-
-// 글자 지우는 효과
-const remove = async () => {
-    const letter = letters[i].split("");
-
-    while (letter.length) {
-        await wait(speed);
-
-        letter.pop();
-        text.innerHTML = letter.join("");
-    }
-
-    // 다음 순서의 글자로 지정, 타이핑 함수 다시 실행
-    i = !letters[i + 1] ? 0 : i + 1;
-    typing();
-}
-
-// 딜레이 기능 ( 마이크로초 )
-function wait(ms) {
-    return new Promise(res => setTimeout(res, ms))
-}
