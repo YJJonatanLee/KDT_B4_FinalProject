@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'b4',
     'django_social_share',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

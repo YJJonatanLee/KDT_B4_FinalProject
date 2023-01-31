@@ -108,6 +108,14 @@ img {
     background-size: cover;
 }
 
+.result_photo {
+    width: 100%;
+    height: 100%;
+    padding: 0rem;
+    /* border: 4px solid #0e192e; */
+    background-size: cover;
+}
+
 .bg_img {
     margin: 1.5rem;
     width: 12.8rem;

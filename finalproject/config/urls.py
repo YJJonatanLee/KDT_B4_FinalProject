@@ -23,7 +23,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('start/',views.start_page),
-    path('color/',views.bg_color, name='color'),
+    # path('color/',views.bg_color, name='color'),
+    path('color/<str:uuid>',views.bg_color, name='color'),
     path('share/<int:id>',views.share_page),
     path('share/download/<int:id>', views.file_download, name='download'),
 ]

@@ -25,15 +25,17 @@
 
 
     <!-- 배경+캐릭터 -->
+    {% for p in photo.all %}
     <div class="img_box">
-      <div class="bg_img"></div>
+      <div class="bg_img"><img class="result_photo" src={{ p.converted_photo.url }}></div>
     </div>
 
 
     <div class="color_box">
       <div class="color_title">color</div>
-      <form action="{% url 'color' %}" method="POST">
-
+      
+      <form action="{% url 'color' p.uuid %}" method="POST">
+        {% endfor %}
         {% csrf_token %}
         <!-- 배경색 선택 버튼 -->
         <div class="color_btn1">
@@ -87,12 +89,14 @@
         </div>
 
         <!-- share_page로 이동 버튼 -->
+        {% for p in photo.all %}
         <div class="next_box">
           <div class="next_shadow"></div>
           <input class="next" type="submit" value="졸업사진 보러 가기">
         </div>
-
+        {% endfor %}
       </form>
+      
     </div>
   </div>
 
