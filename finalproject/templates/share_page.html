@@ -23,7 +23,7 @@
 
     <!-- 결과 이미지 출력 -->
     {% for p in photo.all %}
-    <img class="result_photo" src={{ p.converted_photo.url }}>
+    <img class="result_photo" src={{ p.background_photo.url }}>
     {% endfor %}
 
     <div class="school_name">
