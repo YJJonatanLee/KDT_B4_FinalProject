@@ -94,6 +94,7 @@ function setChildValue(index1) {
         // 로딩 창 실행
         document.querySelector('.main').classList.add('display-none');
         document.querySelector('.main2').classList.remove('display-none');
+        let uuid = self.crypto.randomUUID();
         setTimeout(typing, 1500);
         
         var imageSrc = document.getElementById('image').src;
@@ -105,6 +106,7 @@ function setChildValue(index1) {
 
         const formData = new FormData();
         formData.append('camera-image', new Blob([new Uint8Array(array)], { type: 'image/png' }));
+        formData.append('uuid-test',uuid);
         fetch('/start/', {
             method: 'POST',
             body: formData
@@ -112,7 +114,7 @@ function setChildValue(index1) {
 
         // 15초 후 페이지 이동  
         setTimeout(function () {
-            window.location.href = `/${index1}`;
+            window.location.href = `/${index1}/${uuid}`;
         }, 15000);
     }
 }

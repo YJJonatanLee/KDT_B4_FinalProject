@@ -4,11 +4,12 @@ import urllib
 import os
 import requests
 import json
+import numpy as np
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Photos,CameraImage
 from django.views.decorators.csrf import csrf_exempt
-from PIL import Image
+from PIL import Image, ImageColor
 from django.conf import settings
 from django.core.files import File
 import time
@@ -36,9 +37,10 @@ path_dir = 'media/origin_img/'
 saving_dir = 'media/cutting_faces/'
 files, file_names = make_file_list(path_dir)
 
-def save_photo(image):
+def save_photo(image, uuid):
     photo = Photos()
     photo.origin_photo = image
+    photo.uuid = uuid
     photo.save()
     return photo.id
 
@@ -73,7 +75,9 @@ def start_page(request: HttpResponse) -> HttpResponse:
     if request.method == 'POST':
         start = time.time()
         image = request.FILES.get('camera-image')
-        save_photo_media(save_photo(image),'media/origin_img/img.png')
+        uuid = request.POST.get('uuid-test')
+        id = save_photo(image, uuid)
+        save_photo_media(id,'media/origin_img/img.png')
 
         # 결과 기본 설정 
         result = {'face_lenth':'0', 'hair_style':'short', 'front_hair_style':'short',
@@ -87,37 +91,49 @@ def start_page(request: HttpResponse) -> HttpResponse:
         result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'] = face_recognition(img_path) 
         
         # 캐릭터 생성
-        create_character(result)
-
+        create_character(result, id)
         end = time.time()
         print(f"{end - start:.5f} sec")
-        return render(request,'bg_color.html')
+        return redirect('/color/'+uuid)
    
     return render(request,'start_page.html')
 
 
-def bg_color(request: HttpResponse) -> HttpResponse:
+def bg_color(request: HttpResponse, uuid :str) -> HttpResponse:
 
     """ 배경색 변경 페이지. 
 
     Args:
         request (HttpResponse)
+        uuid (str): 사용자의 uuid 값
 
     Returns:
         HttpResponse
 
     url: color/
     """
+    
+    photo = Photos.objects.filter(uuid = uuid)
+    id=photo[0].id
+    character_url=photo[0].converted_photo.url
+    print(uuid)
+    print(character_url[1:])
+    print(id)
 
+    # 배경색 선택
     if request.method == 'POST':
-        photo = Photos.objects.filter(id="1")
         color=request.POST.get('color')
+        
         print(color)
         if color:
             photo.update(background_color=color)
-        return redirect('/share/'+str(1))
+        else: 
+            color = '#ffffff'
+        # 이미지 저장
+        add_bg_color(photo[0],character_url, color, id)
+        return redirect('/share/'+str(id))
     else:
-        return render(request,'bg_color.html')
+        return render(request,'bg_color.html',{'photo':photo})
 
 
 def share_page(request: HttpResponse, id :int) -> HttpResponse:
@@ -135,14 +151,16 @@ def share_page(request: HttpResponse, id :int) -> HttpResponse:
     """
 
     photo = Photos.objects.filter(id = id)
+    # print(photo.id)
     return render(request,'share_page.html',{'photo':photo})
 
 
-def file_download(id: int) -> HttpResponse:
+def file_download(request, id: int) -> HttpResponse:
 
     """ 최종 결과 이미지를 기기에 저장하는 함수
 
     Args:
+        request (HttpResponse)
         id (int): 사용자의 id 값
 
     Returns:
@@ -150,13 +168,18 @@ def file_download(id: int) -> HttpResponse:
     """
 
     photo = get_object_or_404(Photos, id = id)
-    url = photo.converte_photo.url[1:]
+    url = photo.background_photo.url[1:]
     file_path = urllib.parse.unquote(url)
-    file_type = 'image/png'  
-    binary_file = open(file_path, 'rb')
-    response = HttpResponse(binary_file.read(), content_type=file_type)
-    response['Content-Disposition'] = 'attachment; filename=네모네모.png'
-    return response
+    
+    if os.path.exists(file_path):
+        file_type = 'image/png'  
+        binary_file = open(file_path, 'rb')
+        response = HttpResponse(binary_file.read(), content_type=file_type)
+        response['Content-Disposition'] = 'attachment; filename=네모네모.png'
+        return response
+    else:
+        message = '알 수 없는 오류가 발행하였습니다.'
+        return HttpResponse("<script>alert('"+ message +"');history.back()'</script>")
 
 
 def change_color(image: Image, face_color: list, hair_color: tuple) -> None:
@@ -184,13 +207,35 @@ def change_color(image: Image, face_color: list, hair_color: tuple) -> None:
                 px[i, j] = (hair_color[0]+30, hair_color[1]+30, hair_color[2]+30)
 
 
-def create_character(result: dict) -> None:
+def add_bg_color(photo: Photos, character_url: str, color_hex: str, id: int) -> None:
+
+    """ 선택된 배경색을 합친 이미지 저장
+    Args:
+        photo (Photos): 해당 Photos
+        character_url (str): character이미지의 url
+        color_hex (str): 선택한 배경 색상 (hex 형태)
+        id (int): 사용자의 id 값
+    """
+
+    color = ImageColor.getcolor(color_hex, "RGB")
+    character=Image.open(character_url[1:])#Image.fromarray(open(character_url, 'rb'), 'RGB')
+    data = np.zeros([820, 640, 3], dtype=np.uint8)
+    data[:,:] = color
+    image = Image.fromarray(data, 'RGB') # data를 이미지 객체로 변환한 뒤 화면에 표시한다.
+    image.paste(character,(0,0),character)
+    image.save('media/test/add_bg'+str(id)+'.png','PNG')
+    photo.background_photo = File(open('media/test/add_bg'+str(id)+'.png', 'rb'))
+    photo.save()
+
+
+def create_character(result: dict, id: int) -> None:
 
     """ 나온 결과들을 바탕으로 캐릭터 이미지를 생성하는 함수
 
     Args:
         result (dict): 나온 결과들({'face_lenth': 얼굴 비율, 'hair_style':머리 스타일, 'front_hair_style':앞머리 모양,
                   'face_color':피부색, "hair_color":머리색, 'eye':안경 유무,'emotion': 표정})
+        id (int): 사용자 id 값
     """
     
     dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/img/character/'
@@ -232,6 +277,8 @@ def create_character(result: dict) -> None:
     face_emotion = Image.open(dir+char_path+'/emotion'+result['face_lenth']+'_'+result['eye']+'_'+result['emotion']+'.png')
 
     # 얼굴, 교복, 머리, 표정 합치고 저장
+    photo = Photos.objects.filter(id = id).first()
+    print(photo)
     if result['hair_style']!='bald':
         face.paste(front_hair,(0,0),front_hair)
         if result['hair_style'] != 'short': # 뒷머리가 있는 경우
@@ -239,17 +286,24 @@ def create_character(result: dict) -> None:
             change_color(back_hair, result['face_color'], result['hair_color'])
             back_hair.paste(face_emotion,(0,0),face_emotion)
             back_hair.paste(uniform,(0,0),uniform)
-            back_hair.save('media/test/new1.png','PNG')
+            back_hair.save('media/test/character'+str(id)+'.png','PNG')
+            # photo.update(converted_photo=File(open('media/converted/new'+str(id)+'.png', 'rb')))
         else: # 뒷머리가 없는 경우
             change_color(face, result['face_color'], result['hair_color'])
             face.paste(face_emotion,(0,0),face_emotion)
             face.paste(uniform,(0,0),uniform)
-            face.save('media/test/new1.png','PNG')
+            face.save('media/test/character'+str(id)+'.png','PNG')
+            
+            # photo.update(converted_photo=File(default_storage.open('test/new'+str(id)+'.png', 'rb')))
     else: # 대머리
         change_color(face, result['face_color'], result['hair_color'])
         face.paste(face_emotion,(0,0),face_emotion)
         face.paste(uniform,(0,0),uniform)
-        face.save('media/test/new1.png','PNG')
+        face.save('media/test/character'+str(id)+'.png','PNG')
+        # photo.update(converted_photo=File(open('media/converted/new'+str(id)+'.png', 'rb')))
+
+    photo.converted_photo = File(open('media/test/character'+str(id)+'.png', 'rb'))
+    photo.save()
 
 
 def color_picker(img_path: str, x: int, y: int) -> tuple:
