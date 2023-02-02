@@ -504,3 +504,47 @@ def wave_style(image: Image, hair_style_w_o: str) -> str:
             return hair_style_w_o
     else:
         return hair_style_w_o
+
+def glasses_style(img, model_path):
+
+  """
+  안경 착용 유무 반환하는 함수
+  img: 이미지
+  model_path: 모델 경로
+  """
+  
+  # 안경 분류
+  glasses_dict = {0:"glasses", 1:"not_glasses"}
+
+  # device 설정 (cuda:0 혹은 cpu)
+  device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+  # model load
+  glasses_model = models.mobilenet_v2(weights=None)
+  fc = nn.Sequential(
+      nn.Linear(1280, 512),
+      nn.ReLU(), 
+      nn.Linear(512, 128),
+      nn.ReLU(), 
+      nn.Linear(128, 32), 
+      nn.ReLU(), 
+      nn.Linear(32, 2)
+  )
+  glasses_model.classifier = fc
+  glasses_model.load_state_dict(torch.load(model_path, map_location = 'cpu'))
+  glasses_model.to(device)
+
+  # 이미지 전처리
+  preprocess = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor()
+    ])
+  image_tensor = preprocess(img)
+  image_tensor = image_tensor.unsqueeze_(0)
+
+  # prediction
+  glasses_model.eval()
+  output = glasses_model(image_tensor)
+  _, pred = output.max(dim = 1)
+
+  return glasses_dict[pred.item()]
