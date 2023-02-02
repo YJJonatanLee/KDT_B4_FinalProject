@@ -99,7 +99,7 @@ def start_page(request: HttpResponse) -> HttpResponse:
         print(result['hair_style'])
         
         # 뒷머리 모델 적용 결과
-        result['eye'] = glasses(image)
+        result['eye'] = glasses_style(image)
         
         # api를 통해 얻은 결과
         result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'] = face_recognition(img_path) 
@@ -232,7 +232,7 @@ def add_bg_color(photo: Photos, character_url: str, color_hex: str, id: int) -> 
     """
 
     color = ImageColor.getcolor(color_hex, "RGB")
-    character=Image.open(character_url[1:])#Image.fromarray(open(character_url, 'rb'), 'RGB')
+    character=Image.open(character_url[1:])
     data = np.zeros([820, 640, 3], dtype=np.uint8)
     data[:,:] = color
     image = Image.fromarray(data, 'RGB') # data를 이미지 객체로 변환한 뒤 화면에 표시한다.
@@ -259,6 +259,9 @@ def create_character(result: dict, id: int) -> None:
     face_shadow = Image.open(dir+char_path+'/face'+result['face_lenth']+'_1.png') # 얼굴 그림자 이미지 불러오기
     face.paste(face_shadow,(0,0),face_shadow) # 얼굴 이미지에 얼굴 그림자 이미지 복사
 
+    if result['hair_style'] != 'shortwave':
+        result['front_hair_style'] = 'shortwave'
+
     # 해어 추가(뒷머리가 있는 경우만)
     if result['hair_style'] in ['medium', 'long','longwave', 'mediumwave']:
         back_hair = Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_2.png')
@@ -276,7 +279,7 @@ def create_character(result: dict, id: int) -> None:
             back_hair_highlight=Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_1.png')
             back_hair.paste(back_hair_highlight,(0,0),back_hair_highlight)
     
-    # 앞머리 추가(대머리 제외)
+    # 앞머리 추가(대머리, 파마머리 숏컷 제외)
     if result['hair_style']!='bald':
         front_hair=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_faceshadow.png')
         front_hair_main=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_0.png')
@@ -295,26 +298,24 @@ def create_character(result: dict, id: int) -> None:
     print(photo)
     if result['hair_style']!='bald':
         face.paste(front_hair,(0,0),front_hair)
-        if result['hair_style'] != 'short': # 뒷머리가 있는 경우
+        if result['hair_style'] != 'short' or result['hair_style'] != 'shortwave': # 뒷머리가 있는 경우
             back_hair.paste(face,(0,0),face)
             change_color(back_hair, result['face_color'], result['hair_color'])
             back_hair.paste(face_emotion,(0,0),face_emotion)
             back_hair.paste(uniform,(0,0),uniform)
             back_hair.save('media/test/character'+str(id)+'.png','PNG')
-            # photo.update(converted_photo=File(open('media/converted/new'+str(id)+'.png', 'rb')))
+            
         else: # 뒷머리가 없는 경우
             change_color(face, result['face_color'], result['hair_color'])
             face.paste(face_emotion,(0,0),face_emotion)
             face.paste(uniform,(0,0),uniform)
             face.save('media/test/character'+str(id)+'.png','PNG')
             
-            # photo.update(converted_photo=File(default_storage.open('test/new'+str(id)+'.png', 'rb')))
     else: # 대머리
         change_color(face, result['face_color'], result['hair_color'])
         face.paste(face_emotion,(0,0),face_emotion)
         face.paste(uniform,(0,0),uniform)
         face.save('media/test/character'+str(id)+'.png','PNG')
-        # photo.update(converted_photo=File(open('media/converted/new'+str(id)+'.png', 'rb')))
 
     photo.converted_photo = File(open('media/test/character'+str(id)+'.png', 'rb'))
     photo.save()
@@ -413,9 +414,9 @@ def face_recognition(img_path: str) -> tuple:
         if json_object['info']['faceCount'] !=0:
             # 얼굴 비율
             face_ratio = json_object['faces'][0]['roi']['height']/json_object['faces'][0]['roi']['width']
-            if face_ratio > 1.3 and face_ratio <= 1.5:
+            if face_ratio > 1.2 and face_ratio <= 1.4:
                 face_lenth = '1'
-            elif face_ratio > 1.5:
+            elif face_ratio > 1.4:
                 face_lenth = '2'
 
             # 표정
@@ -523,7 +524,7 @@ def glasses_style(img):
 
   # model load
   dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/glasses_mobilenetv2-pretrained.pth'
-  glasses_model = models.mobilenet_v2(weights=None)
+  glasses_model = torchvision.models.mobilenet_v2(weights=None)
   fc = nn.Sequential(
       nn.Linear(1280, 512),
       nn.ReLU(), 
