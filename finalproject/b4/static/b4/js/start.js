@@ -115,7 +115,7 @@ function setChildValue(index1) {
         // 15초 후 페이지 이동  
         setTimeout(function () {
             window.location.href = `/${index1}/${uuid}`;
-        }, 15000);
+        }, 10000);
     }
 }
 
