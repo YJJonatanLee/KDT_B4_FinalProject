@@ -98,6 +98,9 @@ def start_page(request: HttpResponse) -> HttpResponse:
         result['hair_style'] = wave_style(image, hair_style_w_o)
         print(result['hair_style'])
         
+        # 뒷머리 모델 적용 결과
+        glasses_result = glasses(image)
+        
         # api를 통해 얻은 결과
         result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'] = face_recognition(img_path) 
         
@@ -505,12 +508,11 @@ def wave_style(image: Image, hair_style_w_o: str) -> str:
     else:
         return hair_style_w_o
 
-def glasses_style(img, model_path):
+def glasses_style(img):
 
   """
   안경 착용 유무 반환하는 함수
   img: 이미지
-  model_path: 모델 경로
   """
   
   # 안경 분류
@@ -520,6 +522,7 @@ def glasses_style(img, model_path):
   device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
   # model load
+  dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/glasses_mobilenetv2-pretrained.pth'
   glasses_model = models.mobilenet_v2(weights=None)
   fc = nn.Sequential(
       nn.Linear(1280, 512),
@@ -531,7 +534,7 @@ def glasses_style(img, model_path):
       nn.Linear(32, 2)
   )
   glasses_model.classifier = fc
-  glasses_model.load_state_dict(torch.load(model_path, map_location = 'cpu'))
+  glasses_model.load_state_dict(torch.load(dir, map_location = 'cpu'))
   glasses_model.to(device)
 
   # 이미지 전처리
