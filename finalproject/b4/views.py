@@ -16,6 +16,7 @@ import time
 import torch
 import torchvision
 from torchvision import transforms
+import torch.nn as nn
 
 
 def make_file_list(path_dir):
@@ -95,6 +96,7 @@ def start_page(request: HttpResponse) -> HttpResponse:
         # 뒷머리 모델 적용 결과
         hair_style_w_o = hair_style(image)
         result['hair_style'] = wave_style(image, hair_style_w_o)
+        print(result['hair_style'])
         
         # api를 통해 얻은 결과
         result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'] = face_recognition(img_path) 
@@ -478,6 +480,7 @@ def wave_style(image: Image, hair_style_w_o: str) -> str:
     if hair_style_w_o in ['long','medium','short']:
         dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/wave-model.pth'
         model = torchvision.models.mobilenet_v2(weights=None)
+        model.classifier[1] = nn.Linear(in_features=1280, out_features=2)
         model.load_state_dict(torch.load(dir))
 
         preprocess = transforms.Compose([
@@ -496,5 +499,7 @@ def wave_style(image: Image, hair_style_w_o: str) -> str:
 
         if pred == 1:
             return hair_style_w_o+'wave'
+        else:
+            return hair_style_w_o
     else:
         return hair_style_w_o
