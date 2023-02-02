@@ -70,7 +70,7 @@ h5 {
     background: rgb(80, 120, 241);
     overflow: hidden;
     /* position: relative; */
-    animation: loading 15s linear;
+    animation: loading 10s linear;
 }
 
  
