@@ -520,7 +520,7 @@ def glasses_style(img):
   glasses_dict = {0:"o", 1:"x"}
 
   # device 설정 (cuda:0 혹은 cpu)
-  device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+  # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
   # model load
   dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/glasses_mobilenetv2-pretrained.pth'
@@ -535,8 +535,8 @@ def glasses_style(img):
       nn.Linear(32, 2)
   )
   glasses_model.classifier = fc
-  glasses_model.load_state_dict(torch.load(dir, map_location = 'cpu'))
-  glasses_model.to(device)
+  glasses_model.load_state_dict(torch.load(dir))
+  # glasses_model.to(device)
 
   # 이미지 전처리
   preprocess = transforms.Compose([
