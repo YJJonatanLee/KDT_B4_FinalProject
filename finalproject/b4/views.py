@@ -83,12 +83,18 @@ def start_page(request: HttpResponse) -> HttpResponse:
         save_photo_media(id,'media/origin_img/img.png')
 
         # 결과 기본 설정 
-        result = {'face_lenth':'0', 'hair_style':hair_style('media/origin_img/img.png'), 'front_hair_style':'short',
+        result = {'face_lenth':'0', 'hair_style': 'short', 'front_hair_style':'short',
                   'face_color':[(255, 243, 219) ,((255, 232, 190))], "hair_color":(186,212,237), 
                   'eye':'o','emotion':'0'}
         
         # 원본 이미지 주소
         img_path = 'media/origin_img/img.png'
+
+        image = Image.open(img_path).convert('RGB')
+
+        # 뒷머리 모델 적용 결과
+        hair_style_w_o = hair_style(image)
+        result['hair_style'] = wave_style(image, hair_style_w_o)
         
         # api를 통해 얻은 결과
         result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'] = face_recognition(img_path) 
@@ -432,11 +438,12 @@ def face_recognition(img_path: str) -> tuple:
         print("Error Code:" + str(rescode))
     return face_lenth, emotion, hair_color, face_color
 
-def hair_style(img_path):
-    model = torchvision.models.mobilenet_v2(weights=None)
-    model.load_state_dict(torch.load('media/hairstyle_model.pth'))
 
-    image = Image.open(img_path).convert('RGB')
+def hair_style(image):
+    model = torchvision.models.mobilenet_v2(weights=None)
+    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + 'b4/models/wave-model.pth'
+    model.load_state_dict(torch.load(dir))
+
     preprocess = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
@@ -456,8 +463,38 @@ def hair_style(img_path):
     return labels[pred]
 
 
+def wave_style(image: Image, hair_style_w_o: str) -> str:
 
-# def loading(request):
-#     Cutting_face_save(cv2.imread(os.path.join(path_dir, files[0])), file_names[0], saving_dir)
-#     # time.sleep(10)
-#     return render(request,'loading.html')
+    """ 입력 이미지의 웨이브 유무를 판별하여 최종 헤어스타일을 반환하는 함수
+
+    Args:
+        image (Image): 입력 이미지
+        hair_style_w_o (str): 웨이브 유무가 빠진 헤어스타일
+
+    Returns:
+        str: 최종 헤어스타일
+    """
+    
+    if hair_style_w_o in ['long','medium','short']:
+        dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + 'b4/models/wave-model.pth'
+        model = torchvision.models.mobilenet_v2(weights=None)
+        model.load_state_dict(torch.load(dir))
+
+        preprocess = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ])
+
+        image_tensor = preprocess(image)
+        image_tensor = image_tensor.unsqueeze_(0)
+
+        model.eval()
+
+        output = model(image_tensor)
+        _, pred = torch.max(output, 1)
+
+        if pred == 1:
+            return hair_style_w_o+'wave'
+    else:
+        return hair_style_w_o
