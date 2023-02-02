@@ -99,7 +99,7 @@ def start_page(request: HttpResponse) -> HttpResponse:
         print(result['hair_style'])
         
         # 뒷머리 모델 적용 결과
-        glasses_result = glasses(image)
+        result['eye'] = glasses(image)
         
         # api를 통해 얻은 결과
         result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'] = face_recognition(img_path) 
@@ -516,7 +516,7 @@ def glasses_style(img):
   """
   
   # 안경 분류
-  glasses_dict = {0:"glasses", 1:"not_glasses"}
+  glasses_dict = {0:"o", 1:"x"}
 
   # device 설정 (cuda:0 혹은 cpu)
   device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
