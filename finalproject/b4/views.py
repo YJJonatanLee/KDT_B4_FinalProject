@@ -441,7 +441,7 @@ def face_recognition(img_path: str) -> tuple:
 
 def hair_style(image):
     model = torchvision.models.mobilenet_v2(weights=None)
-    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + 'b4/models/wave-model.pth'
+    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle-model.pth'
     model.load_state_dict(torch.load(dir))
 
     preprocess = transforms.Compose([
@@ -476,7 +476,7 @@ def wave_style(image: Image, hair_style_w_o: str) -> str:
     """
     
     if hair_style_w_o in ['long','medium','short']:
-        dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + 'b4/models/wave-model.pth'
+        dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/wave-model.pth'
         model = torchvision.models.mobilenet_v2(weights=None)
         model.load_state_dict(torch.load(dir))
 
