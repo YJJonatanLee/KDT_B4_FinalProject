@@ -535,7 +535,7 @@ def glasses_style(img):
       nn.Linear(32, 2)
   )
   glasses_model.classifier = fc
-  glasses_model.load_state_dict(torch.load(dir))
+  glasses_model.load_state_dict(torch.load(dir, map_location = 'cpu'))
   # glasses_model.to(device)
 
   # 이미지 전처리
