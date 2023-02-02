@@ -523,7 +523,7 @@ def glasses_style(img):
   # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
   # model load
-  dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/glasses_mobilenetv2-pretrained.pth'
+  dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/glasses_mobilenetv2-pretrained.pth'
   glasses_model = torchvision.models.mobilenet_v2(weights=None)
   fc = nn.Sequential(
       nn.Linear(1280, 512),
