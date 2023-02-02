@@ -13,6 +13,9 @@ from PIL import Image, ImageColor
 from django.conf import settings
 from django.core.files import File
 import time
+import torch
+import torchvision
+from torchvision import transforms
 
 
 def make_file_list(path_dir):
@@ -80,7 +83,7 @@ def start_page(request: HttpResponse) -> HttpResponse:
         save_photo_media(id,'media/origin_img/img.png')
 
         # 결과 기본 설정 
-        result = {'face_lenth':'0', 'hair_style':'short', 'front_hair_style':'short',
+        result = {'face_lenth':'0', 'hair_style':hair_style('media/origin_img/img.png'), 'front_hair_style':'short',
                   'face_color':[(255, 243, 219) ,((255, 232, 190))], "hair_color":(186,212,237), 
                   'eye':'o','emotion':'0'}
         
@@ -428,6 +431,29 @@ def face_recognition(img_path: str) -> tuple:
     else:
         print("Error Code:" + str(rescode))
     return face_lenth, emotion, hair_color, face_color
+
+def hair_style(img_path):
+    model = torchvision.models.mobilenet_v2(weights=None)
+    model.load_state_dict(torch.load('media/hairstyle_model.pth'))
+
+    image = Image.open(img_path).convert('RGB')
+    preprocess = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+
+    image_tensor = preprocess(image)
+    image_tensor = image_tensor.unsqueeze_(0)
+
+    model.eval()
+
+    output = model(image_tensor)
+    _, pred = torch.max(output, 1)
+
+    labels = ['bald','braided','bun','long','medium','pigtails','ponytail','short']
+
+    return labels[pred]
 
 
 
