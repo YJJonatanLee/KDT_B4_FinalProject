@@ -497,7 +497,8 @@ def wave_style(image: Image, hair_style_w_o: str) -> str:
         output = model(image_tensor)
         _, pred = torch.max(output, 1)
 
-        if pred == 1:
+        labels = [0,1]
+        if labels[pred] == 1:
             return hair_style_w_o+'wave'
         else:
             return hair_style_w_o
