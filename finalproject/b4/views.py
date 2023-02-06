@@ -300,7 +300,7 @@ def create_character(result: dict, id: int) -> None:
     print(photo)
     if result['hair_style']!='bald':
         face.paste(front_hair,(0,0),front_hair)
-        if result['hair_style'] != 'short' or result['hair_style'] != 'shortwave': # 뒷머리가 있는 경우
+        if result['hair_style'] != 'short' and result['hair_style'] != 'shortwave': # 뒷머리가 있는 경우
             back_hair.paste(face,(0,0),face)
             change_color(back_hair, result['face_color'], result['hair_color'])
             back_hair.paste(face_emotion,(0,0),face_emotion)
