@@ -29,7 +29,7 @@ const typing = async () => {
     }
 
     // 잠시 대기
-    await wait(800);
+    await wait(400);
 
     // 지우는 효과
     remove();
@@ -115,7 +115,7 @@ function setChildValue(index1) {
         // 15초 후 페이지 이동  
         setTimeout(function () {
             window.location.href = `/${index1}/${uuid}`;
-        }, 10000);
+        }, 6000);
     }
 }
 

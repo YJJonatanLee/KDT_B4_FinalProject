@@ -215,9 +215,9 @@ def change_color(image: Image, face_color: list, hair_color: tuple) -> None:
                 px[i, j] = face_color[1]
             elif px[i, j] == (118, 83, 57, 255): # 머리색 변경
                 px[i, j] = hair_color
-            elif px[i, j] == (76, 45, 23, 255): # 머리 그림자색 변경
+            elif px[i, j] == (76, 45, 23, 255) or px[i, j] == (69, 49, 34, 255): # 머리 그림자색 변경
                 px[i, j] = (hair_color[0]-30, hair_color[1]-30, hair_color[2]-30)
-            elif px[i, j] != (0, 0, 0, 0): # 머리 하이라이트 색 변경
+            elif px[i, j] != (0, 0, 0, 0) and px[i, j] != (0, 0, 0, 255): # 머리 하이라이트 색 변경
                 px[i, j] = (hair_color[0]+30, hair_color[1]+30, hair_color[2]+30)
 
 
