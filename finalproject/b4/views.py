@@ -259,8 +259,10 @@ def create_character(result: dict, id: int) -> None:
     face_shadow = Image.open(dir+char_path+'/face'+result['face_lenth']+'_1.png') # 얼굴 그림자 이미지 불러오기
     face.paste(face_shadow,(0,0),face_shadow) # 얼굴 이미지에 얼굴 그림자 이미지 복사
 
-    if result['hair_style'] == 'shortwave':
+    if result['hair_style'] == 'shortwave' and result['front_hair_style'] == 'short':
         result['front_hair_style'] = 'shortwave'
+    elif result['hair_style'] == 'shortwave':
+        result['hair_style'] = 'short'
 
     # 해어 추가(뒷머리가 있는 경우만)
     if result['hair_style'] in ['medium', 'long','longwave', 'mediumwave']:
