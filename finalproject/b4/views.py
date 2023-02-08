@@ -91,7 +91,12 @@ def start_page(request: HttpResponse) -> HttpResponse:
         # 원본 이미지 주소
         img_path = 'media/origin_img/img.png'
 
-        image = Image.open(img_path).convert('RGB')
+         # api를 통해 얻은 결과
+        face_box=(0,0,0,0)
+        result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'],face_box= face_recognition(img_path) 
+
+        image = Image.open(img_path).crop(face_box).convert('RGB')
+        image.save('media/origin_img/img.png')
 
         # 뒷머리 모델 적용 결과
         hair_style_w_o = hair_style(image)
@@ -101,8 +106,6 @@ def start_page(request: HttpResponse) -> HttpResponse:
         # 뒷머리 모델 적용 결과
         result['eye'] = glasses_style(image)
         
-        # api를 통해 얻은 결과
-        result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'] = face_recognition(img_path) 
         
         # 캐릭터 생성
         create_character(result, id)
@@ -410,6 +413,7 @@ def face_recognition(img_path: str) -> tuple:
     emotion = '0'
     hair_color = (0,0,0)
     face_color = [(255, 243, 219) ,((255, 232, 190))]
+    face_box=(0,0,0,0)
 
     if(rescode==200):
         json_object = json.loads(response.text)
@@ -441,7 +445,30 @@ def face_recognition(img_path: str) -> tuple:
             x_f,y_f = json_object['faces'][0]['roi']['x']+json_object['faces'][0]['roi']['width']//2,json_object['faces'][0]['roi']['y']+json_object['faces'][0]['roi']['height']//2
             rgb = color_picker(img_path, x_f, y_f)
             face_color = face_color_picker(rgb)
-            return face_lenth, emotion, hair_color, face_color
+
+            # crop
+            x_ltop=json_object['faces'][0]['roi']['x']
+            y_ltop=json_object['faces'][0]['roi']['y']
+
+            '''
+            frame_list=[(15,20),(30,40),(60,80),(120,160),(240,320),(480,640),(960,1280)]
+            '''
+            x_frame=[i*24 for i in range(1,51)]
+            y_frame=[i*32 for i in range(1,51)]
+
+            frame=(0,0)
+
+            for f in zip(x_frame,y_frame):
+                if (f[0]>json_object['faces'][0]['roi']['width'] and f[1]>json_object['faces'][0]['roi']['height']):
+                    frame=f
+                    break
+
+            
+            x,y=(x_ltop+json_object['faces'][0]['roi']['width']//2),(y_ltop+json_object['faces'][0]['roi']['height']//2)
+            
+            face_box=(x-frame[0],y-frame[1],x+frame[0],y+frame[1])
+
+            return face_lenth, emotion, hair_color, face_color,face_box
     else:
         print("Error Code:" + str(rescode))
     return face_lenth, emotion, hair_color, face_color
