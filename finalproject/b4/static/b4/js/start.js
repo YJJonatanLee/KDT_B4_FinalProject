@@ -82,6 +82,12 @@ navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
     video.srcObject = stream;
 });
 
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
 // 로딩창 실행 및 다음 페이지로 이동 함수
 function setChildValue(index1) {
@@ -94,7 +100,8 @@ function setChildValue(index1) {
         // 로딩 창 실행
         document.querySelector('.main').classList.add('display-none');
         document.querySelector('.main2').classList.remove('display-none');
-        let uuid = self.crypto.randomUUID();
+        // let uuid = self.crypto.randomUUID();
+        let uuid = generateUUID();
         setTimeout(typing, 1500);
         
         var imageSrc = document.getElementById('image').src;
