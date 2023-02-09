@@ -86,24 +86,24 @@ def start_page(request: HttpResponse) -> HttpResponse:
         # 결과 기본 설정 
         result = {'face_lenth':'0', 'hair_style': 'short', 'front_hair_style':'short',
                   'face_color':[(255, 243, 219) ,((255, 232, 190))], "hair_color":(186,212,237), 
-                  'eye':'o','emotion':'0'}
+                  'eye':'x','emotion':'0'}
         
         # 원본 이미지 주소
         img_path = 'media/origin_img/img.png'
 
          # api를 통해 얻은 결과
         face_box=(0,0,0,0)
-        result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'],face_box= face_recognition(img_path) 
-
-        image = Image.open(img_path).crop(face_box).convert('RGB')
-        image.save('media/origin_img/img.png')
+        result['face_lenth'], result['emotion'], result['hair_color'], result['face_color'], face_box, exist = face_recognition(img_path) 
+        if exist == 1:
+            image = Image.open(img_path).crop(face_box).convert('RGB')
+            image.save('media/origin_img/img.png')
 
         
-        result['hair_style'] = hair_style(image)
-        print(result['hair_style'])
+            result['hair_style'] = hair_style(image)
+            print(result['hair_style'])
         
-        # 뒷머리 모델 적용 결과
-        result['eye'] = glasses_style(image)
+            # 뒷머리 모델 적용 결과
+            result['eye'] = glasses_style(image)
         
         
         # 캐릭터 생성
@@ -409,10 +409,11 @@ def face_recognition(img_path: str) -> tuple:
     hair_color = (0,0,0)
     face_color = [(255, 243, 219) ,((255, 232, 190))]
     face_box=(0,0,0,0)
-
+    exist = 0
     if(rescode==200):
         json_object = json.loads(response.text)
         if json_object['info']['faceCount'] !=0:
+            exist = 1
             # 얼굴 비율
             face_ratio = json_object['faces'][0]['roi']['height']/json_object['faces'][0]['roi']['width']
             if face_ratio > 1.2 and face_ratio <= 1.4:
@@ -433,7 +434,7 @@ def face_recognition(img_path: str) -> tuple:
             print (face_ratio, emotion_r, json_object)
 
             # 머리색
-            x,y = json_object['faces'][0]['roi']['x']+15,json_object['faces'][0]['roi']['y']+15
+            x,y = json_object['faces'][0]['roi']['x'],json_object['faces'][0]['roi']['y']
             hair_color = color_picker(img_path, x, y)
 
             # 피부색
@@ -464,10 +465,11 @@ def face_recognition(img_path: str) -> tuple:
             
             face_box=(x-frame[0],y-frame[1],x+frame[0],y+frame[1])
 
-            return face_lenth, emotion, hair_color, face_color,face_box
+            return face_lenth, emotion, hair_color, face_color, face_box, exist
     else:
         print("Error Code:" + str(rescode))
-    return face_lenth, emotion, hair_color, face_color
+        return face_lenth, emotion, hair_color, face_color, face_box, exist
+    return face_lenth, emotion, hair_color, face_color, face_box, exist
 
 
 def hair_style(image):
