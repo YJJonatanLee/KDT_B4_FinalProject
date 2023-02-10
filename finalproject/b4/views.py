@@ -98,13 +98,19 @@ def start_page(request: HttpResponse) -> HttpResponse:
             image = Image.open(img_path).crop(face_box).convert('RGB')
             image.save('media/origin_img/img.png')
 
+        # 헤어스타일 모델 적용 결과
+        result['hair_style'] = hair_style(image)
+        print(result['hair_style'])
         
-            result['hair_style'] = hair_style(image)
-            print(result['hair_style'])
+        # 뒷머리 모델 적용 결과
         
-            # 뒷머리 모델 적용 결과
-            result['eye'] = glasses_style(image)
+        # 안경 모델 적용 결과
+        result['eye'] = glasses_style(image)
+        print(result['eye'])
         
+        # 앞머리 모델 적용 결과
+        result['front_hair_style'] = front_hair_style(image)
+        print(result['front_hair_style'])
         
         # 캐릭터 생성
         create_character(result, id)
@@ -474,8 +480,8 @@ def face_recognition(img_path: str) -> tuple:
 
 def hair_style(image):
     model = torchvision.models.mobilenet_v2(weights=None)
-    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle-model.pth'
-    model.load_state_dict(torch.load(dir))
+    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle_mobilenetv2_0.pth'
+    model.load_state_dict(torch.load(dir, map_location = 'cpu'))
 
     preprocess = transforms.Compose([
         transforms.Resize((210, 280)),
@@ -496,8 +502,28 @@ def hair_style(image):
     return labels[pred]
 
 
-def front_hair_style(image: Image, hair_style_w_o: str) -> str:
-    pass
+def front_hair_style(image):
+    model = torchvision.models.mobilenet_v2(weights=None)
+    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/fronthair_mobilenetv2_0.pth'
+    model.load_state_dict(torch.load(dir, map_location = 'cpu'))
+
+    preprocess = transforms.Compose([
+        transforms.Resize((210, 280)),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+
+    image_tensor = preprocess(image)
+    image_tensor = image_tensor.unsqueeze_(0)
+
+    model.eval()
+
+    output = model(image_tensor)
+    _, pred = torch.max(output, 1)
+
+    labels = ['short', 'shortall', 'shortfront', 'shorthalf']
+
+    return labels[pred]
 
 
 def glasses_style(img):
