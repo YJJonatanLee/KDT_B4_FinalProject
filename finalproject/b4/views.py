@@ -267,6 +267,8 @@ def create_character(result: dict, id: int) -> None:
     face_shadow = Image.open(dir+char_path+'/face'+result['face_lenth']+'_1.png') # 얼굴 그림자 이미지 불러오기
     face.paste(face_shadow,(0,0),face_shadow) # 얼굴 이미지에 얼굴 그림자 이미지 복사
 
+    if result['hair_style']=='shortwave':
+        result['front_hair_style']='shortwave'
 
     # 해어 추가(뒷머리가 있는 경우만)
     if result['hair_style'] in ['medium', 'long','longwave', 'mediumwave']:
@@ -285,7 +287,7 @@ def create_character(result: dict, id: int) -> None:
             back_hair_highlight=Image.open(dir+char_path+'/'+result['hair_style']+result['face_lenth']+'_1.png')
             back_hair.paste(back_hair_highlight,(0,0),back_hair_highlight)
     
-    # 앞머리 추가(대머리, 파마머리 숏컷 제외)
+    # 앞머리 추가(대머리 제외)
     if result['hair_style']!='bald':
         front_hair=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_faceshadow.png')
         front_hair_main=Image.open(dir+char_path+'/'+result['front_hair_style']+result['face_lenth']+'_0.png')
