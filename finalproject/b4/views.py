@@ -27,15 +27,6 @@ def make_file_list(path_dir):
     return file_list, file_name_list
 
 
-# def Cutting_face_save(image, name, saving_dir):
-#     face_cascade = cv2.CascadeClassifier('media/haarcascade_frontalface_default.xml')
-#     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-#     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-#     for (x,y,w,h) in faces:
-#         cropped = image[y-40 : y+h+40, x-40: x+w+40]
-#         resize = cv2.resize(cropped, (180,180))
-#         cv2.imwrite(os.path.join(saving_dir, f"{name}.jpg"), resize)
-
 
 path_dir = 'media/origin_img/'
 saving_dir = 'media/cutting_faces/'
