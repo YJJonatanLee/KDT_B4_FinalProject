@@ -126,6 +126,8 @@ ul {
 img {
     width: 12.8rem;
     height: 16.4rem;
+    object-fit: cover ;
+    /* background-size: auto ; */
     position: absolute;
 }
 
