@@ -139,6 +139,10 @@ img {
     padding: 0.2rem 0.3rem;
 }
 
+label {
+    cursor: pointer;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -190,6 +194,7 @@ form {
     padding: 0.5rem;
     border: none;
     background-color: rgb(255, 44, 44);
+    cursor: pointer;
     clip-path: polygon(0% 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0%,
             calc(100% + -8px) 0%, calc(100% + -8px) 4px, calc(100% + -4px) 4px, calc(100% + -4px) 8px, 100% 8px,
             100% calc(100% + -8px), calc(100% + -4px) calc(100% + -8px), calc(100% + -4px) calc(100% + -4px), calc(100% + -8px) calc(100% + -4px), calc(100% + -8px) 100%,

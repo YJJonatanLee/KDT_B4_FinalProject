@@ -95,9 +95,14 @@ button {
     border: none;
 }
 
+.link {
+    cursor: pointer;
+}
+
 
 .restart {
     color: #12213a;
+    cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
     margin: 1rem;
