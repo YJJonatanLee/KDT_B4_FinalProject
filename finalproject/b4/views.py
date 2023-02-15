@@ -472,8 +472,11 @@ def face_recognition(img_path: str) -> tuple:
 
 
 def hair_style(image):
-    model = torchvision.models.mobilenet_v2(weights=None)
-    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle_mobilenetv2_0.pth'
+    # model = torchvision.models.mobilenet_v2(weights=None)
+    # dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle_mobilenetv2_0.pth'
+    model = torchvision.models.efficientnet_b0(weights=None)
+    model.classifier = nn.Linear(in_features=1280, out_features=11)
+    dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle_efficientnet.pth'
     model.load_state_dict(torch.load(dir, map_location = 'cpu'))
 
     preprocess = transforms.Compose([
