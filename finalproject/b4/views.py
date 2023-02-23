@@ -495,7 +495,7 @@ def hair_style(image):
 
 def front_hair_style(image: Image) -> str:
 
-    """_summary_
+    """ 앞머리 스타일 분류
 
     Args:
         image (Image): 입력 이미지
