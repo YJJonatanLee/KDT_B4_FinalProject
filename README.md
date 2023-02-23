@@ -30,6 +30,9 @@
 
 ## Usages
 어떻게 사용하면 되는지에 대한 설명
+1. 레포지토리 다운받기
+2. 장고 가상환경 activate
+3. finalproject 안으로 들어가 manage.py 실행
 
 ## requirements
 asgiref==3.6.0  
