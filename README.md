@@ -42,28 +42,28 @@
 ## Files
 finalproject  
 │  
-├─b4  
-│ ├─migrations  
-│ ├─static  
-│ └─b4  
-│ ├─css  
-│ ├─img  
-│ │ ├─character  
-│ │ │ ├─face0  
-│ │ │ ├─face1  
-│ │ │ └─face2  
-│ │ └─icon  
-│ ├─js  
-│ └─models  
+├─ b4  
+│ ├─ migrations  
+│ ├─ static  
+│ └─ b4  
+│ ├─ css  
+│ ├─ img  
+│ │ ├─ character  
+│ │ │ ├─ face0  
+│ │ │ ├─ face1  
+│ │ │ └─ face2  
+│ │ └─ icon  
+│ ├─ js  
+│ └─ models  
 │  
-├─media  
-│ ├─converted  
-│ │ └─media  
-│ │ └─test  
-│ ├─origin  
-│ ├─origin_img  
-│ └─test  
-└─templates  
+├─ media  
+│ ├─ converted  
+│ │ └─ media  
+│ │ └─ test  
+│ ├─ origin  
+│ ├─ origin_img  
+│ └─ test  
+└─ templates  
 
 ## Usages
 어떻게 사용하면 되는지에 대한 설명
