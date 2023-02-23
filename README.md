@@ -66,8 +66,15 @@ finalproject
 ## Usages
 어떻게 사용하면 되는지에 대한 설명
 1. 레포지토리 다운받기
-2. 장고 가상환경 activate
-3. finalproject 안으로 들어가 manage.py 실행
+2. Django 가상환경 activate
+
+	Source venv/bin/activate
+
+3. Django 서버 실행
+
+	Python manage.py runserver
+![image](https://user-images.githubusercontent.com/46258521/220817944-7bf71827-3d5b-4e50-b08b-e8852ec0abbd.png)
+
 
 ## requirements
 asgiref==3.6.0  
