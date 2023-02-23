@@ -1,8 +1,15 @@
 # 네모네모 고등학교 졸업식  
 ## Description
-네모네모 고등학교 졸업식은 사용자로부터 받은 이미지를 픽셀 캐릭터로 변환시켜주는 프로젝트입니다. 각종 api와 딥러닝 모델을 통해 원본 사진에서 표정, 얼굴 비율, 얼굴과 머리 색상, 머리 스타일, 안경 유무 등을 파악하여 다양한 캐릭터를 만들 수 있습니다. 
+네모네모 고등학교 졸업식은 사용자로부터 받은 이미지를 픽셀 캐릭터로 변환시켜주는 프로젝트입니다.  
+각종 api와 딥러닝 모델을 통해 원본 사진에서 표정, 얼굴 비율, 얼굴과 머리 색상, 머리 스타일, 안경 유무 등을 파악하여 다양한 캐릭터를 만들 수 있습니다. 
 
+## Member
+이영준[@YJJonatanLee](https://github.com/YJJonatanLee)  
+임동윤[@spade8](https://github.com/spade8)  
+김소미[@som2303](https://github.com/som2303)  
+김보섭[@platypus46](https://github.com/platypus46)  
 ## Example
+![그림1](https://user-images.githubusercontent.com/37619294/220820041-a83cdf27-ad68-4ea0-a799-0e3d586fed2a.png)  
 
 ## Demonstration video
 ![1 5배속_](https://user-images.githubusercontent.com/37619294/220817790-fdc1037e-c3b8-45d7-86d7-f310f91f9e89.gif)
@@ -28,9 +35,12 @@
 | 얼굴 비율 | Naver api(face recognition) | 3 |
 | 색상 | Naver api(face recognition) | 얼굴: 9, 헤어: 추출된 색상 |
 
-![image](https://user-images.githubusercontent.com/37619294/220816228-3a91ba96-d001-4f83-be31-bf319143c266.png)
-![image](https://user-images.githubusercontent.com/37619294/220816258-961b96b6-b56e-4ac6-9608-b31409b08671.png)
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/37619294/220816228-3a91ba96-d001-4f83-be31-bf319143c266.png" align="center" width="49%">
+  <img src="https://user-images.githubusercontent.com/37619294/220816258-961b96b6-b56e-4ac6-9608-b31409b08671.png" align="center" width="49%">
+  <figcaption align="center">
+</p>
 
 
 ## Prototype
@@ -40,35 +50,38 @@
 ## Files
 finalproject  
 │  
-├─b4  
-│ ├─migrations  
-│ ├─static  
-│ └─b4  
-│ ├─css  
-│ ├─img  
-│ │ ├─character  
-│ │ │ ├─face0  
-│ │ │ ├─face1  
-│ │ │ └─face2  
-│ │ └─icon  
-│ ├─js  
-│ └─models  
+├─ b4  
+│ ├─ migrations  
+│ ├─ static  
+│ └─ b4  
+│ ├─ css  
+│ ├─ img  
+│ │ ├─ character  
+│ │ │ ├─ face0  
+│ │ │ ├─ face1  
+│ │ │ └─ face2  
+│ │ └─ icon  
+│ ├─ js  
+│ └─ models  
 │  
-├─media  
-│ ├─converted  
-│ │ └─media  
-│ │ └─test  
-│ ├─origin  
-│ ├─origin_img  
-│ └─test  
-└─templates  
+├─ media  
+│ ├─ converted  
+│ │ └─ media  
+│ │ └─ test  
+│ ├─ origin  
+│ ├─ origin_img  
+│ └─ test  
+└─ templates  
 
 ## Usages
 어떻게 사용하면 되는지에 대한 설명
+0. git clone
+
 1. 가상환경 설치
 <pre>
 <code>
 sudo pip install virtualenv
+virtualenv venv
 </code>
 </pre>
 
@@ -86,6 +99,27 @@ python manage.py runserver
 </code>
 </pre>
 
+4. migrate 실행
+<pre>
+<code>
+python manage.py migrate
+python manage.py makemigrations
+</code>
+</pre>
+
+5. 네이버 api 관련 json 파일 설치
+
+finalproject 하위 파일로 secrets.json파일을 작성해 주세요.
+네이버 api는 [해당 사이트](https://developers.naver.com/docs/clova/api/CFR/API_Guide.md)를 확인해주세요.
+<pre>
+<code>
+    {
+        "Naver_id": "Client ID",
+        "Naver_secret": "Client Secret"
+    }
+</code>
+</pre>
+6. media 폴더 구축
 
 ## requirements
 asgiref==3.6.0  
