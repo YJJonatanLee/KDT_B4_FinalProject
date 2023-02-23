@@ -66,6 +66,8 @@ finalproject
 
 ## Usages
 어떻게 사용하면 되는지에 대한 설명
+0. git clone
+
 1. 가상환경 설치
 <pre>
 <code>
@@ -88,6 +90,18 @@ python manage.py runserver
 </code>
 </pre>
 
+4. migrate 실행
+<pre>
+<code>
+python manage.py migrate
+python manage.py makemigrations
+</code>
+</pre>
+
+5. 네이버 api 관련 json 파일 설치
+
+
+6. media 폴더 구축
 
 ## requirements
 asgiref==3.6.0  
