@@ -107,7 +107,6 @@ def start_page(request: HttpResponse) -> HttpResponse:
         create_character(result, id)
         end = time.time()
         print(f"{end - start:.5f} sec")
-        return redirect('/color/'+uuid)
    
     return render(request,'start_page.html')
 
