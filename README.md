@@ -29,7 +29,3 @@
 중요 파일 간단히 설명
 
 ## Prerequisite
-설치해야 
->>> tests.pyㅎㅏㄹ 
->>> tests.pyㅊㅐ
->>> tests.
