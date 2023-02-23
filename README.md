@@ -70,6 +70,7 @@ finalproject
 <pre>
 <code>
 sudo pip install virtualenv
+virtualenv venv
 </code>
 </pre>
 
