@@ -3,6 +3,7 @@
 네모네모 고등학교 졸업식은 사용자로부터 받은 이미지를 픽셀 캐릭터로 변환시켜주는 프로젝트입니다. 각종 api와 딥러닝 모델을 통해 원본 사진에서 표정, 얼굴 비율, 얼굴과 머리 색상, 머리 스타일, 안경 유무 등을 파악하여 다양한 캐릭터를 만들 수 있습니다. 
 
 ## Example
+![그림1](https://user-images.githubusercontent.com/37619294/220820041-a83cdf27-ad68-4ea0-a799-0e3d586fed2a.png)  
 
 ## Demonstration video
 ![1 5배속_](https://user-images.githubusercontent.com/37619294/220817790-fdc1037e-c3b8-45d7-86d7-f310f91f9e89.gif)
