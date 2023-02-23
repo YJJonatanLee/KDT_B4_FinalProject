@@ -158,7 +158,6 @@ function gallery() {
     camera_btn.innerText = '카메라';
     guideline.style.display = "none";
     image.style.display = "block";
-
 }
 
 

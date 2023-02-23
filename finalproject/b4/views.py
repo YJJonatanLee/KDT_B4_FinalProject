@@ -17,34 +17,29 @@ import torchvision
 from torchvision import transforms
 import torch.nn as nn
 
-
-def make_file_list(path_dir):
-    file_list = os.listdir(path_dir)
-    file_name_list = []
-    for i in range(len(file_list)):
-        file_name_list.append(file_list[i].replace(".jpg",""))
-    return file_list, file_name_list
-
-
-
-path_dir = 'media/origin_img/'
-saving_dir = 'media/cutting_faces/'
-files, file_names = make_file_list(path_dir)
-
 def save_photo(image, uuid):
+    """start.js로 부터 받은 정보를 db에 저장
+
+    Args:
+        image (blob): 캡쳐이미지 blob 데이터
+        uuid (str): 사용자의 uuid 값
+
+    Returns:
+        int: 사용자의 id 값
+    """
     photo = Photos()
     photo.origin_photo = image
     photo.uuid = uuid
     photo.save()
     return photo.id
 
-
-def get_photo(photo_id):
-    photo = Photos.objects.get(id=photo_id)
-    return photo.origin_photo
-
-
 def save_photo_media(photo_id, path):
+    """blob파일을 이미지로 변환하여 저장
+
+    Args:
+        photo_id (int): 사용자의 id값
+        path (str): 이미지가 저장되는 경로
+    """
     photo = Photos.objects.get(id=photo_id)
     photo_file = File(photo.origin_photo.file)
     with open(path, 'wb') as f:
@@ -388,6 +383,8 @@ def face_recognition(img_path: str) -> tuple:
             emotion (str): 표정 (0, 1, 2, 3, 4)
             hair_color (tuple): 머리색, color_picker()의 반환값 ((r, g, b))
             face_color (list): 피부색, face_color_picker()의 반환값 ([(피부색), (그림자색)] = [(r, g, b), (r, g, b)])
+            face_box (tuple): crop실시할 x,y값 범위
+            exist(int): 이미지에 존재하는 인원 수
     """
 
     # api 실행
@@ -442,16 +439,18 @@ def face_recognition(img_path: str) -> tuple:
             x_ltop=json_object['faces'][0]['roi']['x']
             y_ltop=json_object['faces'][0]['roi']['y']
 
-            '''
-            frame_list=[(15,20),(30,40),(60,80),(120,160),(240,320),(480,640),(960,1280)]
-            '''
+           
+            #액자 미리 구성
             x_frame=[i*24 for i in range(1,51)]
             y_frame=[i*32 for i in range(1,51)]
-
+            
+            #프레임 초기화
             frame=(0,0)
 
-            for f in zip(x_frame,y_frame):
-                
+            """ 
+            이미지 크기가 프레임 크기보다 작다면 반복문을 탈출하고 이미지 크기에 맞는 프레임 정의
+            """
+            for f in zip(x_frame,y_frame): 
                 if (f[0]>json_object['faces'][0]['roi']['width'] and f[1]>json_object['faces'][0]['roi']['height']):
                     frame=f
                     break
@@ -469,6 +468,14 @@ def face_recognition(img_path: str) -> tuple:
 
 
 def hair_style(image):
+    """머리 스타일 분류
+
+    Args:
+        image (Image): 입력 이미지
+
+    Returns:
+        str: 헤어스타일 분류 결과(bald, braided, bun, long, longwave, medium, mediumwave, pigtails, ponytail, short, shortwave)
+    """
     model = torchvision.models.efficientnet_b0(weights=None)
     model.classifier = nn.Linear(in_features=1280, out_features=11)
     dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle_efficientnet.pth'
