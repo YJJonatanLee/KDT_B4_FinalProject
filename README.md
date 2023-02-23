@@ -32,20 +32,20 @@
 미리 설치해야 할 패키지, 의존성이 걸리는 문제 작성
 ### Packages
 asgiref==3.6.0  
-certifi==2022.12.7
-charset-normalizer==3.0.1
-Django==4.1.5
-django-cleanup==6.0.0
-django-social-share==2.3.0
-idna==3.4
-numpy==1.24.1
-opencv-python==4.7.0.68
-Pillow==9.4.0
-requests==2.28.2
-sqlparse==0.4.3
-torch==1.13.1
-torchvision==0.14.1
-typing_extensions==4.4.0
+certifi==2022.12.7  
+charset-normalizer==3.0.1  
+Django==4.1.5  
+django-cleanup==6.0.0  
+django-social-share==2.3.0  
+idna==3.4  
+numpy==1.24.1  
+opencv-python==4.7.0.68  
+Pillow==9.4.0  
+requests==2.28.2  
+sqlparse==0.4.3  
+torch==1.13.1  
+torchvision==0.14.1  
+typing_extensions==4.4.0  
 urllib3==1.26.14
 
 ## Usages
