@@ -73,7 +73,6 @@ finalproject
 3. Django 서버 실행
 
 	Python manage.py runserver
-![image](https://user-images.githubusercontent.com/46258521/220817944-7bf71827-3d5b-4e50-b08b-e8852ec0abbd.png)
 
 
 ## requirements
