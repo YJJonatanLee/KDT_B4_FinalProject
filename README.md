@@ -24,3 +24,19 @@
 ## Prototype
 
 ![캡처](https://user-images.githubusercontent.com/89053845/219292003-f3501e10-e1bc-4cf3-887a-6e79addb311d.PNG)
+
+## Files
+> finalproject
+>> b4
+>>> __pycache__
+>>> migrations
+>>> static
+>>> __init__.py
+>>> admin.py
+>>> apps.py
+>>> models.py
+>>> tests.py
+>>> views.py
+>> config
+>> media
+>> templates
