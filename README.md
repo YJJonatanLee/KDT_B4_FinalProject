@@ -20,6 +20,7 @@
 | 표정 | Naver api(face recognition) | 5(기본, 슬픔, 기쁨, 무표정, 신남) |
 | 얼굴 비율 | Naver api(face recognition) | 3 |
 | 색상 | Naver api(face recognition) | 얼굴: 9, 헤어: 추출된 색상 |
+
 ![image](https://user-images.githubusercontent.com/37619294/220816228-3a91ba96-d001-4f83-be31-bf319143c266.png)
 ![image](https://user-images.githubusercontent.com/37619294/220816258-961b96b6-b56e-4ac6-9608-b31409b08671.png)
 
