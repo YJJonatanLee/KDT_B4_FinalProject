@@ -67,13 +67,13 @@ finalproject
 어떻게 사용하면 되는지에 대한 설명
 1. 레포지토리 다운받기
 2. Django 가상환경 activate
-
-	Source venv/bin/activate
-
+'''
+Source venv/bin/activate
+'''
 3. Django 서버 실행
-
-	Python manage.py runserver
-
+'''
+Python manage.py runserver
+'''
 
 ## requirements
 asgiref==3.6.0  
