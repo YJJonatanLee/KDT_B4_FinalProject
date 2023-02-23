@@ -1,4 +1,3 @@
-# import cv2
 import os
 import urllib
 import os
@@ -7,7 +6,7 @@ import json
 import numpy as np
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Photos,CameraImage
+from .models import Photos
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image, ImageColor
 from django.conf import settings
@@ -89,19 +88,19 @@ def start_page(request: HttpResponse) -> HttpResponse:
             image = Image.open(img_path).crop(face_box).convert('RGB')
             image.save('media/origin_img/img.png')
 
-        # 헤어스타일 모델 적용 결과
-        result['hair_style'] = hair_style(image)
-        print(result['hair_style'])
-        
-        # 뒷머리 모델 적용 결과
-        
-        # 안경 모델 적용 결과
-        result['eye'] = glasses_style(image)
-        print(result['eye'])
-        
-        # 앞머리 모델 적용 결과
-        result['front_hair_style'] = front_hair_style(image)
-        print(result['front_hair_style'])
+            # 헤어스타일 모델 적용 결과
+            result['hair_style'] = hair_style(image)
+            print(result['hair_style'])
+            
+            # 뒷머리 모델 적용 결과
+            
+            # 안경 모델 적용 결과
+            result['eye'] = glasses_style(image)
+            print(result['eye'])
+            
+            # 앞머리 모델 적용 결과
+            result['front_hair_style'] = front_hair_style(image)
+            print(result['front_hair_style'])
         
         # 캐릭터 생성
         create_character(result, id)
@@ -163,11 +162,10 @@ def share_page(request: HttpResponse, id :int) -> HttpResponse:
     """
 
     photo = Photos.objects.filter(id = id)
-    # print(photo.id)
     return render(request,'share_page.html',{'photo':photo})
 
 
-def file_download(request, id: int) -> HttpResponse:
+def file_download(request: HttpResponse, id: int) -> HttpResponse:
 
     """ 최종 결과 이미지를 기기에 저장하는 함수
 
@@ -471,8 +469,6 @@ def face_recognition(img_path: str) -> tuple:
 
 
 def hair_style(image):
-    # model = torchvision.models.mobilenet_v2(weights=None)
-    # dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle_mobilenetv2_0.pth'
     model = torchvision.models.efficientnet_b0(weights=None)
     model.classifier = nn.Linear(in_features=1280, out_features=11)
     dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/hairstyle_efficientnet.pth'
@@ -497,7 +493,17 @@ def hair_style(image):
     return labels[pred]
 
 
-def front_hair_style(image):
+def front_hair_style(image: Image) -> str:
+
+    """_summary_
+
+    Args:
+        image (Image): 입력 이미지
+
+    Returns:
+        str: 헤어스타일 분류 결과(short, shortall, shortfront, shorthalf)
+    """
+
     model = torchvision.models.mobilenet_v2(weights=None)
     dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/static/b4/models/fronthair_mobilenetv2_0.pth'
     model.load_state_dict(torch.load(dir, map_location = 'cpu'))

@@ -8,7 +8,3 @@ class Photos(models.Model):
     converted_photo = models.ImageField(upload_to="converted",null=True)
     background_color = models.CharField(default='#ffffff',max_length=10,null=True)
     background_photo = models.ImageField(upload_to="background",null=True)
-
-class CameraImage(models.Model):
-    image = models.ImageField(upload_to="origin_blob")
-    timestamp = models.DateTimeField(auto_now_add=True)
