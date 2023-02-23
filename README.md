@@ -31,7 +31,7 @@
 ## Prerequisite
 미리 설치해야 할 패키지, 의존성이 걸리는 문제 작성
 ### Packages
-asgiref==3.6.0 \n
+asgiref==3.6.0 /n
 certifi==2022.12.7
 charset-normalizer==3.0.1
 Django==4.1.5
