@@ -493,7 +493,7 @@ def hair_style(image):
     output = model(image_tensor)
     _, pred = torch.max(output, 1)
 
-    labels = ['bald','braided','bun','longwave','long','mediumwave','medium','pigtails','ponytail','shortwave','short']
+    labels = ['bald','braided','bun','long','longwave','medium','mediumwave','pigtails','ponytail','short','shortwave']
 
     return labels[pred]
 
