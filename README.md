@@ -1,13 +1,6 @@
 # 네모네모 고등학교 졸업식  
-
 ## Description
 네모네모 고등학교 졸업식은 사용자로부터 받은 이미지를 픽셀 캐릭터로 변환시켜주는 프로젝트입니다. 각종 api와 딥러닝 모델을 통해 원본 사진에서 표정, 얼굴 비율, 얼굴과 머리 색상, 머리 스타일, 안경 유무 등을 파악하여 다양한 캐릭터를 만들 수 있습니다. 
-
-## Member
-이영준 [@YJJonatanLee](https://github.com/YJJonatanLee)  
-임동윤 [@spade8](https://github.com/spade8)  
-주소미 [@som2303](https://github.com/som2303)  
-김보섭 [@platypus46](https://github.com/platypus46)
 
 ## Example
 
@@ -72,14 +65,26 @@ finalproject
 
 ## Usages
 어떻게 사용하면 되는지에 대한 설명
-1. 레포지토리 다운받기
-2. Django 가상환경 activate
+1. 가상환경 설치
+<pre>
+<code>
+sudo pip install virtualenv
+</code>
+</pre>
 
-    source venv/bin/activate
+2. Django 가상환경 activate
+<pre>
+<code>
+source venv/bin/activate
+</code>
+</pre>
 
 3. Django 서버 실행
-
-    python manage.py runserver
+<pre>
+<code>
+python manage.py runserver
+</code>
+</pre>
 
 
 ## requirements
