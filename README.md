@@ -101,7 +101,16 @@ python manage.py makemigrations
 
 5. 네이버 api 관련 json 파일 설치
 
-
+finalproject 하위 파일로 secrets.json파일을 작성해 주세요.
+네이버 api는 [해당 사이트](https://developers.naver.com/docs/clova/api/CFR/API_Guide.md)를 확인해주세요.
+<pre>
+<code>
+    {
+        "Naver_id": "Client ID",
+        "Naver_secret": "Client Secret"
+    }
+</code>
+</pre>
 6. media 폴더 구축
 
 ## requirements
