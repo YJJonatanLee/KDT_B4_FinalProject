@@ -47,31 +47,34 @@
 
 ![캡처](https://user-images.githubusercontent.com/89053845/219292003-f3501e10-e1bc-4cf3-887a-6e79addb311d.PNG)
 
-## Files
-finalproject  
+## [Files](https://github.com/YJJonatanLee/KDT_B4_FinalProject/wiki/Files)
+[finalproject](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject)   
 │  
-├─ b4  
+├─ [b4](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4)    
 │ ├─ migrations  
 │ ├─ static  
-│ └─ b4  
-│ ├─ css  
-│ ├─ img  
-│ │ ├─ character  
-│ │ │ ├─ face0  
-│ │ │ ├─ face1  
-│ │ │ └─ face2  
-│ │ └─ icon  
-│ ├─ js  
-│ └─ models  
+│ │ └─ [b4](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4/static/b4)  
+│ │ │ ├─ [css](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4/static/b4/css)  
+│ │ │ ├─ [img](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4/static/b4/img)  
+│ │ │ │ ├─ [character](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4/static/b4/img/character)  
+│ │ │ │ │ ├─ face0  
+│ │ │ │ │ ├─ face1  
+│ │ │ │ │ └─ face2  
+│ │ │ │ └─ [icon](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4/static/b4/img/icon)  
+│ │ │ ├─ [js](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4/static/b4/js)     
+│ │ │ └─ [models](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/b4/static/b4/models)     
 │  
 ├─ media  
+│ ├─ background   
+│ │ └─ media  
+│ │ │ └─ test     
 │ ├─ converted  
 │ │ └─ media  
-│ │ └─ test  
+│ │ │ └─ test  
 │ ├─ origin  
 │ ├─ origin_img  
-│ └─ test  
-└─ templates  
+│ └─ test     
+└─ [templates](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/templates)   
 
 ## Usages
 어떻게 사용하면 되는지에 대한 설명
