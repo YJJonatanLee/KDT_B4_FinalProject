@@ -231,6 +231,7 @@ def add_bg_color(photo: Photos, character_url: str, color_hex: str, id: int) -> 
     image.save('media/test/add_bg'+str(id)+'.png','PNG')
     photo.background_photo = File(open('media/test/add_bg'+str(id)+'.png', 'rb'))
     photo.save()
+    os.remove('media/test/add_bg'+str(id)+'.png')
 
 
 def create_character(result: dict, id: int) -> None:
@@ -310,6 +311,7 @@ def create_character(result: dict, id: int) -> None:
 
     photo.converted_photo = File(open('media/test/character'+str(id)+'.png', 'rb'))
     photo.save()
+    os.remove('media/test/character'+str(id)+'.png')
 
 
 def color_picker(img_path: str, x: int, y: int) -> tuple:
