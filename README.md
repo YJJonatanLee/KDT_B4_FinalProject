@@ -77,7 +77,7 @@
 └─ [templates](https://github.com/YJJonatanLee/KDT_B4_FinalProject/tree/main/finalproject/templates)   
 
 ## Usages
-어떻게 사용하면 되는지에 대한 설명
+어떻게 사용하면 되는지에 대한 설명  
 0. git clone
 
 1. 가상환경 설치
