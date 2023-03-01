@@ -86,19 +86,14 @@
 sudo pip install virtualenv
 virtualenv venv
 </code>
-</pre>
+</pre>  
 
-2. Django 가상환경 activate
+2. media 폴더 구축  
+
+3. Django 가상환경 activate
 <pre>
 <code>
 source venv/bin/activate
-</code>
-</pre>
-
-3. Django 서버 실행
-<pre>
-<code>
-python manage.py runserver
 </code>
 </pre>
 
@@ -122,7 +117,14 @@ finalproject 하위 파일로 secrets.json파일을 작성해 주세요.
     }
 </code>
 </pre>
-6. media 폴더 구축
+
+
+6. Django 서버 실행
+<pre>
+<code>
+python manage.py runserver
+</code>
+</pre>
 
 ## requirements
 asgiref==3.6.0  
