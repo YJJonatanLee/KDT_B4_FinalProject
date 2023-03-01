@@ -87,8 +87,6 @@ def start_page(request: HttpResponse) -> HttpResponse:
             result['hair_style'] = hair_style(image)
             print(result['hair_style'])
             
-            # 뒷머리 모델 적용 결과
-            
             # 안경 모델 적용 결과
             result['eye'] = glasses_style(image)
             print(result['eye'])
