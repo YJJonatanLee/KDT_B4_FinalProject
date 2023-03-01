@@ -88,19 +88,8 @@ virtualenv venv
 
 2. media 폴더 구축  
 
-3. Django 가상환경 activate
-```python
-source venv/bin/activate
-```
 
-4. migrate 실행
-```python
-python manage.py migrate
-python manage.py makemigrations
-```
-
-5. 네이버 api 관련 json 파일 설치
-
+3. 네이버 api 관련 json 파일 설치
 finalproject 하위 파일로 secrets.json파일을 작성해 주세요.
 네이버 api는 [해당 사이트](https://developers.naver.com/docs/clova/api/CFR/API_Guide.md)를 확인해주세요.
 ```python
@@ -110,6 +99,16 @@ finalproject 하위 파일로 secrets.json파일을 작성해 주세요.
     }
 ```
 
+4. Django 가상환경 activate
+```python
+source venv/bin/activate
+```
+
+5. migrate 실행
+```python
+python manage.py migrate
+python manage.py makemigrations
+```
 
 6. Django 서버 실행
 ```python
