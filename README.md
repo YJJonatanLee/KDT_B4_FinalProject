@@ -4,10 +4,10 @@
 각종 api와 딥러닝 모델을 통해 원본 사진에서 표정, 얼굴 비율, 얼굴과 머리 색상, 머리 스타일, 안경 유무 등을 파악하여 다양한 캐릭터를 만들 수 있습니다. 
 
 ## Member
-이영준[@YJJonatanLee](https://github.com/YJJonatanLee)  
-임동윤[@spade8](https://github.com/spade8)  
-주소미[@som2303](https://github.com/som2303)  
-김보섭[@platypus46](https://github.com/platypus46)  
+이영준 [@YJJonatanLee](https://github.com/YJJonatanLee)  
+임동윤 [@spade8](https://github.com/spade8)  
+주소미 [@som2303](https://github.com/som2303)  
+김보섭 [@platypus46](https://github.com/platypus46)  
 ## Example
 ![그림1](https://user-images.githubusercontent.com/37619294/220820041-a83cdf27-ad68-4ea0-a799-0e3d586fed2a.png)  
 
